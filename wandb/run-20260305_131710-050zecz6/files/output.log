@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/train.py", line 254, in <module>
+    X, Y = get_batch('train') # fetch the very first batch
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/train.py", line 120, in get_batch
+    data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linux/env/rscam/lib/python3.12/site-packages/numpy/_core/memmap.py", line 236, in __new__
+    f_ctx = open(
+            ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/openwebtext/train.bin'

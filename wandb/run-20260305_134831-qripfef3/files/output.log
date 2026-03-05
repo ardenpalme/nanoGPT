@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/train.py", line 270, in <module>
+    print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+             ^^^^^^^^^^^^^^^
+  File "/home/linux/env/rscam/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/train.py", line 231, in estimate_loss
+    out[split] = losses.mean()
+                    ^^^^^^^^^^^
+KeyboardInterrupt

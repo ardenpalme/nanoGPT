@@ -1,0 +1,21 @@
+2026-03-05 14:07:36,640 INFO    MainThread:12706 [wandb_setup.py:_flush():81] Current SDK version is 0.25.0
+2026-03-05 14:07:36,640 INFO    MainThread:12706 [wandb_setup.py:_flush():81] Configure stats pid to 12706
+2026-03-05 14:07:36,640 INFO    MainThread:12706 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-03-05 14:07:36,640 INFO    MainThread:12706 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/wandb/run-20260305_140736-3buajm9a/logs/debug.log
+2026-03-05 14:07:36,641 INFO    MainThread:12706 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/wandb/run-20260305_140736-3buajm9a/logs/debug-internal.log
+2026-03-05 14:07:36,641 INFO    MainThread:12706 [wandb_init.py:init():844] calling init triggers
+2026-03-05 14:07:36,641 INFO    MainThread:12706 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'out_dir': 'out-shakespeare-char', 'eval_interval': 250, 'log_interval': 10, 'eval_iters': 20, 'eval_only': False, 'always_save_checkpoint': False, 'init_from': 'scratch', 'wandb_log': True, 'wandb_project': 'shakespeare-char', 'wandb_run_name': 'mini-gpt', 'dataset': 'shakespeare_char', 'gradient_accumulation_steps': 1, 'batch_size': 12, 'block_size': 64, 'n_layer': 4, 'n_head': 4, 'n_embd': 128, 'dropout': 0.0, 'bias': False, 'learning_rate': 0.001, 'max_iters': 2000, 'weight_decay': 0.1, 'beta1': 0.9, 'beta2': 0.99, 'grad_clip': 1.0, 'decay_lr': True, 'warmup_iters': 100, 'lr_decay_iters': 2000, 'min_lr': 0.0001, 'backend': 'nccl', 'device': 'xpu', 'dtype': 'float16', 'compile': False, '_wandb': {}}
+2026-03-05 14:07:36,641 INFO    MainThread:12706 [wandb_init.py:init():892] starting backend
+2026-03-05 14:07:36,869 INFO    MainThread:12706 [wandb_init.py:init():895] sending inform_init request
+2026-03-05 14:07:36,872 INFO    MainThread:12706 [wandb_init.py:init():903] backend started and connected
+2026-03-05 14:07:36,879 INFO    MainThread:12706 [wandb_init.py:init():973] updated telemetry
+2026-03-05 14:07:36,881 INFO    MainThread:12706 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-03-05 14:07:38,671 INFO    MainThread:12706 [wandb_init.py:init():1042] starting run threads in backend
+2026-03-05 14:07:38,727 INFO    MainThread:12706 [wandb_run.py:_console_start():2524] atexit reg
+2026-03-05 14:07:38,727 INFO    MainThread:12706 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-03-05 14:07:38,727 INFO    MainThread:12706 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-03-05 14:07:38,727 INFO    MainThread:12706 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-03-05 14:07:38,728 INFO    MainThread:12706 [wandb_init.py:init():1082] run started, returning control to user process
+2026-03-05 14:08:17,446 INFO    wandb-AsyncioManager-main:12706 [service_client.py:_forward_responses():134] Reached EOF.
+2026-03-05 14:08:17,446 INFO    wandb-AsyncioManager-main:12706 [mailbox.py:close():155] Closing mailbox, abandoning 1 handles.

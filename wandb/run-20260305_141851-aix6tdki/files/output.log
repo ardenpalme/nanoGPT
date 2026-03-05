@@ -1,0 +1,12 @@
+[0]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+Traceback (most recent call last):
+  File "/home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/train.py", line 273, in <module>
+    losses = estimate_loss()
+             ^^^^^^^^^^^^^^^
+  File "/home/linux/env/rscam/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linux/Documents/UoE/Research Skills for CAM/Group Project/nanoGPT/train.py", line 231, in estimate_loss
+    losses[k] = loss.item()
+                ^^^^^^^^^^^
+KeyboardInterrupt

@@ -28,6 +28,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
 
 from model import GPTConfig, GPT
+from lib.utils import log_attention_svd 
 
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
@@ -42,7 +43,8 @@ init_from = 'scratch' # 'scratch' or 'resume' or 'gpt2*'
 # wandb logging
 wandb_log = True # disabled by default
 wandb_project = 'owt'
-wandb_run_name = 'gpt' # 'run' + str(time.time())
+wandb_run_name = 'gpt'+ str(time.time())
+wandb_run = None
 # data
 dataset = 'openwebtext'
 gradient_accumulation_steps = 5 * 8 # used to simulate larger batch sizes
@@ -155,7 +157,6 @@ if init_from == 'scratch':
     model_args['vocab_size'] = meta_vocab_size if meta_vocab_size is not None else 50304
     gptconf = GPTConfig(**model_args)
     model = GPT(gptconf)
-    print("ICI")
 
 elif init_from == 'resume':
     print(f"Resuming training from {out_dir}")
@@ -248,7 +249,7 @@ def get_lr(it):
 # logging
 if wandb_log and master_process:
     import wandb
-    wandb.init(project=wandb_project, name=wandb_run_name, config=config)
+    wandb_run = wandb.init(project=wandb_project, name=wandb_run_name, config=config)
 
 # training loop
 X, Y = get_batch('train') # fetch the very first batch
@@ -267,8 +268,8 @@ while True:
     if iter_num % eval_interval == 0 and master_process:
         losses = estimate_loss()
         print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
-        if wandb_log:
-            wandb.log({
+        if wandb_log and wandb_run:
+            wandb_run.log({
                 "iter": iter_num,
                 "train/loss": losses['train'],
                 "val/loss": losses['val'],
@@ -290,21 +291,6 @@ while True:
                 torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
     if iter_num == 0 and eval_only:
         break
-
-    # every 50 iterations we print the attention layer's weight's SVD
-    if iter_num % 50 == 0:
-        for name, module in model.named_children():
-            if(name == 'transformer'):
-                print(module)
-                for name, module in module.named_children():
-                    if(name == 'h'):
-                        for i, layer in enumerate(module):
-                            for name, layer in layer.named_children():
-                                if(name == 'attn'):
-                                    for name, layer in layer.named_children():
-                                        if(name == 'c_attn'):
-                                            print(np.linalg.svd(layer.weight.detach().numpy())[1])
-
 
     # forward backward update, with optional gradient accumulation to simulate larger batch size
     # and using the GradScaler if data type is float16
@@ -344,6 +330,9 @@ while True:
             mfu = raw_model.estimate_mfu(batch_size * gradient_accumulation_steps, dt)
             running_mfu = mfu if running_mfu == -1.0 else 0.9*running_mfu + 0.1*mfu
         print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%")
+
+        if wandb_log and wandb_run:
+            log_attention_svd(model, wandb_run, iter_num);
     iter_num += 1
     local_iter_num += 1
 

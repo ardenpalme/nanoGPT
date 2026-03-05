@@ -1,0 +1,1043 @@
+[0]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 0: train loss 4.2154, val loss 4.2135
+iter 0: loss 4.1997, time 9912.65ms, mfu -100.00%
+[34m[1mwandb[0m: [33mWARNING[0m Tried to log to step 0 that is less than the current step 1. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+[10]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 10: loss 3.5335, time 104.83ms, mfu 0.22%
+[20]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 20: loss 3.2531, time 103.35ms, mfu 0.22%
+[30]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 30: loss 3.0053, time 104.34ms, mfu 0.22%
+[40]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 40: loss 2.7902, time 108.20ms, mfu 0.22%
+[50]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 50: loss 2.6997, time 106.45ms, mfu 0.22%
+[60]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 60: loss 2.6510, time 101.18ms, mfu 0.22%
+[70]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 70: loss 2.6268, time 104.82ms, mfu 0.22%
+[80]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 80: loss 2.5771, time 112.59ms, mfu 0.22%
+[90]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 90: loss 2.5276, time 105.91ms, mfu 0.22%
+[100]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 100: loss 2.5769, time 109.75ms, mfu 0.22%
+[110]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 110: loss 2.5004, time 107.92ms, mfu 0.22%
+[120]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 120: loss 2.4998, time 105.18ms, mfu 0.22%
+[130]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 130: loss 2.4825, time 108.07ms, mfu 0.22%
+[140]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 140: loss 2.4455, time 105.90ms, mfu 0.22%
+[150]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 150: loss 2.4908, time 106.05ms, mfu 0.22%
+[160]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 160: loss 2.4814, time 107.04ms, mfu 0.22%
+[170]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 170: loss 2.4614, time 104.53ms, mfu 0.22%
+[180]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 180: loss 2.4530, time 109.05ms, mfu 0.22%
+[190]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 190: loss 2.4264, time 105.95ms, mfu 0.22%
+[200]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 200: loss 2.4825, time 105.15ms, mfu 0.22%
+[210]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 210: loss 2.4094, time 110.74ms, mfu 0.22%
+[220]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 220: loss 2.4090, time 107.15ms, mfu 0.22%
+[230]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 230: loss 2.4045, time 106.20ms, mfu 0.22%
+[240]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 240: loss 2.4261, time 104.59ms, mfu 0.22%
+[250]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 250: train loss 2.3373, val loss 2.3522
+saving checkpoint to out-shakespeare-char
+iter 250: loss 2.3927, time 8453.91ms, mfu 0.20%
+[260]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 260: loss 2.3690, time 112.14ms, mfu 0.20%
+[270]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 270: loss 2.3528, time 110.59ms, mfu 0.20%
+[280]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 280: loss 2.3784, time 104.32ms, mfu 0.20%
+[290]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 290: loss 2.3645, time 104.02ms, mfu 0.20%
+[300]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 300: loss 2.3694, time 104.82ms, mfu 0.21%
+[310]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 310: loss 2.3202, time 103.29ms, mfu 0.21%
+[320]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 320: loss 2.3075, time 107.08ms, mfu 0.21%
+[330]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 330: loss 2.2750, time 105.96ms, mfu 0.21%
+[340]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 340: loss 2.2717, time 107.26ms, mfu 0.21%
+[350]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 350: loss 2.2907, time 109.24ms, mfu 0.21%
+[360]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 360: loss 2.2845, time 106.98ms, mfu 0.21%
+[370]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 370: loss 2.2780, time 106.40ms, mfu 0.21%
+[380]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 380: loss 2.2766, time 104.11ms, mfu 0.21%
+[390]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 390: loss 2.1701, time 106.76ms, mfu 0.21%
+[400]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 400: loss 2.2441, time 104.47ms, mfu 0.22%
+[410]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 410: loss 2.1999, time 106.31ms, mfu 0.22%
+[420]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 420: loss 2.1917, time 110.17ms, mfu 0.22%
+[430]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 430: loss 2.2182, time 105.11ms, mfu 0.22%
+[440]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 440: loss 2.1744, time 105.76ms, mfu 0.22%
+[450]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 450: loss 2.2108, time 102.41ms, mfu 0.22%
+[460]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 460: loss 2.1891, time 105.02ms, mfu 0.22%
+[470]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 470: loss 2.1717, time 105.10ms, mfu 0.22%
+[480]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 480: loss 2.1538, time 105.91ms, mfu 0.22%
+[490]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 490: loss 2.1677, time 105.83ms, mfu 0.22%
+[500]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 500: train loss 2.0610, val loss 2.1141
+saving checkpoint to out-shakespeare-char
+iter 500: loss 2.0989, time 8077.96ms, mfu 0.20%
+[510]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 510: loss 2.1175, time 108.79ms, mfu 0.20%
+[520]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 520: loss 2.1113, time 105.61ms, mfu 0.20%
+[530]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 530: loss 2.0957, time 104.65ms, mfu 0.20%
+[540]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 540: loss 2.0719, time 104.65ms, mfu 0.21%
+[550]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 550: loss 2.0907, time 103.12ms, mfu 0.21%
+[560]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 560: loss 2.0962, time 106.63ms, mfu 0.21%
+[570]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 570: loss 2.0937, time 101.77ms, mfu 0.21%
+[580]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 580: loss 2.0931, time 104.55ms, mfu 0.21%
+[590]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 590: loss 2.0920, time 105.56ms, mfu 0.21%
+[600]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 600: loss 2.0434, time 107.98ms, mfu 0.21%
+[610]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 610: loss 2.0504, time 105.38ms, mfu 0.21%
+[620]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 620: loss 2.0408, time 108.00ms, mfu 0.21%
+[630]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 630: loss 1.9974, time 104.59ms, mfu 0.22%
+[640]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 640: loss 2.0239, time 105.04ms, mfu 0.22%
+[650]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 650: loss 1.9956, time 106.93ms, mfu 0.22%
+[660]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 660: loss 1.9847, time 104.57ms, mfu 0.22%
+[670]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 670: loss 1.9989, time 106.52ms, mfu 0.22%
+[680]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 680: loss 2.0132, time 107.46ms, mfu 0.22%
+[690]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 690: loss 2.0141, time 106.03ms, mfu 0.22%
+[700]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 700: loss 1.9957, time 104.96ms, mfu 0.22%
+[710]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 710: loss 1.9986, time 104.60ms, mfu 0.22%
+[720]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 720: loss 1.9777, time 109.83ms, mfu 0.22%
+[730]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 730: loss 2.0155, time 103.87ms, mfu 0.22%
+[740]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 740: loss 1.9465, time 107.02ms, mfu 0.22%
+[750]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 750: train loss 1.8627, val loss 1.9834
+saving checkpoint to out-shakespeare-char
+iter 750: loss 1.9207, time 8633.74ms, mfu 0.20%
+[760]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 760: loss 1.9760, time 107.26ms, mfu 0.20%
+[770]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 770: loss 1.9886, time 111.25ms, mfu 0.20%
+[780]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 780: loss 1.9106, time 105.47ms, mfu 0.20%
+[790]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 790: loss 1.9200, time 105.77ms, mfu 0.20%
+[800]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 800: loss 1.9621, time 106.82ms, mfu 0.21%
+[810]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 810: loss 1.9633, time 107.31ms, mfu 0.21%
+[820]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 820: loss 1.9072, time 105.12ms, mfu 0.21%
+[830]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 830: loss 1.8218, time 105.35ms, mfu 0.21%
+[840]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 840: loss 1.8746, time 109.53ms, mfu 0.21%
+[850]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 850: loss 1.9426, time 106.81ms, mfu 0.21%
+[860]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 860: loss 1.8681, time 101.80ms, mfu 0.21%
+[870]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 870: loss 1.8833, time 101.56ms, mfu 0.21%
+[880]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 880: loss 1.8777, time 100.01ms, mfu 0.22%
+[890]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 890: loss 1.8878, time 103.35ms, mfu 0.22%
+[900]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 900: loss 1.8936, time 99.59ms, mfu 0.22%
+[910]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 910: loss 1.8913, time 105.39ms, mfu 0.22%
+[920]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 920: loss 1.8669, time 105.69ms, mfu 0.22%
+[930]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 930: loss 1.8727, time 103.41ms, mfu 0.22%
+[940]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 940: loss 1.8646, time 102.77ms, mfu 0.22%
+[950]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 950: loss 1.8715, time 101.26ms, mfu 0.22%
+[960]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 960: loss 1.8469, time 101.86ms, mfu 0.22%
+[970]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 970: loss 1.8120, time 105.58ms, mfu 0.22%
+[980]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 980: loss 1.8413, time 106.22ms, mfu 0.22%
+[990]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 990: loss 1.7796, time 104.91ms, mfu 0.22%
+[1000]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 1000: train loss 1.7286, val loss 1.8696
+saving checkpoint to out-shakespeare-char
+iter 1000: loss 1.8620, time 8901.80ms, mfu 0.20%
+[1010]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1010: loss 1.9144, time 106.58ms, mfu 0.20%
+[1020]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1020: loss 1.8183, time 108.61ms, mfu 0.20%
+[1030]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1030: loss 1.7940, time 106.46ms, mfu 0.20%
+[1040]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1040: loss 1.8133, time 107.56ms, mfu 0.21%
+[1050]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1050: loss 1.7954, time 105.62ms, mfu 0.21%
+[1060]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1060: loss 1.7844, time 106.04ms, mfu 0.21%
+[1070]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1070: loss 1.8510, time 105.64ms, mfu 0.21%
+[1080]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1080: loss 1.7840, time 107.48ms, mfu 0.21%
+[1090]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1090: loss 1.8100, time 106.33ms, mfu 0.21%
+[1100]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1100: loss 1.8057, time 107.07ms, mfu 0.21%
+[1110]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1110: loss 1.7792, time 108.87ms, mfu 0.21%
+[1120]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1120: loss 1.7950, time 107.09ms, mfu 0.21%
+[1130]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1130: loss 1.8108, time 107.87ms, mfu 0.21%
+[1140]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1140: loss 1.7637, time 111.64ms, mfu 0.21%
+[1150]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1150: loss 1.7510, time 107.57ms, mfu 0.21%
+[1160]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1160: loss 1.8201, time 111.29ms, mfu 0.21%
+[1170]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1170: loss 1.7263, time 104.22ms, mfu 0.21%
+[1180]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1180: loss 1.7413, time 110.05ms, mfu 0.21%
+[1190]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1190: loss 1.7474, time 106.97ms, mfu 0.21%
+[1200]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1200: loss 1.8175, time 105.92ms, mfu 0.21%
+[1210]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1210: loss 1.7600, time 105.90ms, mfu 0.22%
+[1220]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1220: loss 1.7457, time 105.01ms, mfu 0.22%
+[1230]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1230: loss 1.7654, time 106.44ms, mfu 0.22%
+[1240]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1240: loss 1.7677, time 101.56ms, mfu 0.22%
+[1250]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 1250: train loss 1.6423, val loss 1.8185
+saving checkpoint to out-shakespeare-char
+iter 1250: loss 1.7164, time 8912.81ms, mfu 0.20%
+[1260]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1260: loss 1.7301, time 108.98ms, mfu 0.20%
+[1270]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1270: loss 1.7800, time 105.00ms, mfu 0.20%
+[1280]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1280: loss 1.7811, time 105.07ms, mfu 0.20%
+[1290]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1290: loss 1.7397, time 104.16ms, mfu 0.20%
+[1300]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1300: loss 1.7467, time 104.96ms, mfu 0.21%
+[1310]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1310: loss 1.7254, time 106.23ms, mfu 0.21%
+[1320]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1320: loss 1.7057, time 105.59ms, mfu 0.21%
+[1330]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1330: loss 1.6979, time 107.37ms, mfu 0.21%
+[1340]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1340: loss 1.7256, time 105.97ms, mfu 0.21%
+[1350]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1350: loss 1.6941, time 106.00ms, mfu 0.21%
+[1360]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1360: loss 1.7079, time 104.38ms, mfu 0.21%
+[1370]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1370: loss 1.7086, time 106.81ms, mfu 0.21%
+[1380]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1380: loss 1.7251, time 107.51ms, mfu 0.21%
+[1390]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1390: loss 1.6637, time 103.71ms, mfu 0.22%
+[1400]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1400: loss 1.6797, time 106.64ms, mfu 0.22%
+[1410]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1410: loss 1.6582, time 104.38ms, mfu 0.22%
+[1420]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1420: loss 1.6766, time 105.40ms, mfu 0.22%
+[1430]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1430: loss 1.6119, time 105.49ms, mfu 0.22%
+[1440]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1440: loss 1.6720, time 103.00ms, mfu 0.22%
+[1450]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1450: loss 1.7275, time 106.34ms, mfu 0.22%
+[1460]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1460: loss 1.6512, time 106.01ms, mfu 0.22%
+[1470]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1470: loss 1.6356, time 124.24ms, mfu 0.22%
+[1480]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1480: loss 1.7283, time 105.19ms, mfu 0.22%
+[1490]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1490: loss 1.6592, time 104.90ms, mfu 0.22%
+[1500]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 1500: train loss 1.5682, val loss 1.7366
+saving checkpoint to out-shakespeare-char
+iter 1500: loss 1.6692, time 9620.58ms, mfu 0.20%
+[1510]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1510: loss 1.6521, time 105.51ms, mfu 0.20%
+[1520]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1520: loss 1.7084, time 103.29ms, mfu 0.20%
+[1530]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1530: loss 1.6682, time 106.24ms, mfu 0.20%
+[1540]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1540: loss 1.6037, time 107.04ms, mfu 0.20%
+[1550]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1550: loss 1.6407, time 102.96ms, mfu 0.21%
+[1560]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1560: loss 1.6262, time 106.36ms, mfu 0.21%
+[1570]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1570: loss 1.6365, time 109.94ms, mfu 0.21%
+[1580]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1580: loss 1.6310, time 104.08ms, mfu 0.21%
+[1590]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1590: loss 1.6681, time 112.95ms, mfu 0.21%
+[1600]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1600: loss 1.5631, time 130.29ms, mfu 0.21%
+[1610]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1610: loss 1.6080, time 121.12ms, mfu 0.21%
+[1620]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1620: loss 1.6452, time 112.51ms, mfu 0.21%
+[1630]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1630: loss 1.6641, time 104.27ms, mfu 0.21%
+[1640]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1640: loss 1.6465, time 104.31ms, mfu 0.21%
+[1650]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1650: loss 1.6440, time 111.44ms, mfu 0.21%
+[1660]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1660: loss 1.6636, time 117.74ms, mfu 0.21%
+[1670]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1670: loss 1.7168, time 106.41ms, mfu 0.21%
+[1680]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1680: loss 1.6113, time 103.69ms, mfu 0.21%
+[1690]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1690: loss 1.6755, time 177.33ms, mfu 0.20%
+[1700]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1700: loss 1.6940, time 142.86ms, mfu 0.20%
+[1710]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1710: loss 1.5934, time 121.12ms, mfu 0.20%
+[1720]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1720: loss 1.6109, time 143.43ms, mfu 0.19%
+[1730]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1730: loss 1.5912, time 116.05ms, mfu 0.20%
+[1740]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1740: loss 1.5672, time 145.19ms, mfu 0.19%
+[1750]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 1750: train loss 1.5264, val loss 1.7049
+saving checkpoint to out-shakespeare-char
+iter 1750: loss 1.5952, time 10920.93ms, mfu 0.17%
+[1760]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1760: loss 1.6474, time 109.47ms, mfu 0.18%
+[1770]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1770: loss 1.6248, time 119.34ms, mfu 0.18%
+[1780]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1780: loss 1.6234, time 116.38ms, mfu 0.18%
+[1790]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1790: loss 1.5882, time 116.62ms, mfu 0.18%
+[1800]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1800: loss 1.6493, time 145.14ms, mfu 0.18%
+[1810]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1810: loss 1.5542, time 111.13ms, mfu 0.18%
+[1820]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1820: loss 1.5993, time 120.51ms, mfu 0.18%
+[1830]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1830: loss 1.5938, time 157.63ms, mfu 0.18%
+[1840]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1840: loss 1.6304, time 145.87ms, mfu 0.18%
+[1850]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1850: loss 1.5832, time 108.32ms, mfu 0.18%
+[1860]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1860: loss 1.6015, time 144.20ms, mfu 0.18%
+[1870]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1870: loss 1.5822, time 188.51ms, mfu 0.17%
+[1880]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1880: loss 1.6067, time 150.16ms, mfu 0.17%
+[1890]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1890: loss 1.6183, time 157.03ms, mfu 0.17%
+[1900]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1900: loss 1.5831, time 154.46ms, mfu 0.17%
+[1910]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1910: loss 1.5795, time 109.07ms, mfu 0.17%
+[1920]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1920: loss 1.6017, time 122.35ms, mfu 0.17%
+[1930]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1930: loss 1.5203, time 115.57ms, mfu 0.18%
+[1940]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1940: loss 1.5743, time 119.54ms, mfu 0.18%
+[1950]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1950: loss 1.6121, time 164.67ms, mfu 0.18%
+[1960]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1960: loss 1.5997, time 103.63ms, mfu 0.18%
+[1970]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1970: loss 1.6130, time 106.63ms, mfu 0.18%
+[1980]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1980: loss 1.5797, time 108.52ms, mfu 0.19%
+[1990]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 1990: loss 1.5627, time 111.42ms, mfu 0.19%
+[2000]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 2000: train loss 1.4955, val loss 1.6702
+saving checkpoint to out-shakespeare-char
+iter 2000: loss 1.6212, time 8325.69ms, mfu 0.17%
+[2010]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2010: loss 1.5568, time 106.33ms, mfu 0.18%
+[2020]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2020: loss 1.5422, time 110.78ms, mfu 0.18%
+[2030]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2030: loss 1.5366, time 172.50ms, mfu 0.17%
+[2040]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2040: loss 1.5492, time 109.46ms, mfu 0.18%
+[2050]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2050: loss 1.5951, time 108.34ms, mfu 0.18%
+[2060]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2060: loss 1.5206, time 105.76ms, mfu 0.19%
+[2070]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2070: loss 1.5477, time 105.89ms, mfu 0.19%
+[2080]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2080: loss 1.6319, time 111.37ms, mfu 0.19%
+[2090]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2090: loss 1.5321, time 102.97ms, mfu 0.20%
+[2100]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2100: loss 1.5508, time 107.48ms, mfu 0.20%
+[2110]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2110: loss 1.4813, time 118.22ms, mfu 0.20%
+[2120]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2120: loss 1.6325, time 106.58ms, mfu 0.20%
+[2130]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2130: loss 1.5639, time 107.28ms, mfu 0.20%
+[2140]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2140: loss 1.5224, time 104.11ms, mfu 0.20%
+[2150]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2150: loss 1.5465, time 105.38ms, mfu 0.21%
+[2160]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2160: loss 1.5619, time 103.08ms, mfu 0.21%
+[2170]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2170: loss 1.5748, time 103.15ms, mfu 0.21%
+[2180]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2180: loss 1.5869, time 170.01ms, mfu 0.20%
+[2190]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2190: loss 1.6006, time 147.50ms, mfu 0.20%
+[2200]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2200: loss 1.5373, time 106.15ms, mfu 0.20%
+[2210]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2210: loss 1.5053, time 137.10ms, mfu 0.20%
+[2220]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2220: loss 1.5328, time 113.98ms, mfu 0.20%
+[2230]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2230: loss 1.5599, time 102.76ms, mfu 0.20%
+[2240]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2240: loss 1.5755, time 164.93ms, mfu 0.19%
+[2250]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 2250: train loss 1.4656, val loss 1.6445
+saving checkpoint to out-shakespeare-char
+iter 2250: loss 1.5162, time 8553.56ms, mfu 0.18%
+[2260]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2260: loss 1.5559, time 104.79ms, mfu 0.18%
+[2270]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2270: loss 1.5760, time 106.22ms, mfu 0.18%
+[2280]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2280: loss 1.5312, time 107.33ms, mfu 0.19%
+[2290]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2290: loss 1.5412, time 107.10ms, mfu 0.19%
+[2300]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2300: loss 1.4990, time 105.92ms, mfu 0.19%
+[2310]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2310: loss 1.5256, time 106.00ms, mfu 0.20%
+[2320]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2320: loss 1.5254, time 104.37ms, mfu 0.20%
+[2330]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2330: loss 1.5903, time 104.45ms, mfu 0.20%
+[2340]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2340: loss 1.5006, time 102.44ms, mfu 0.20%
+[2350]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2350: loss 1.5438, time 103.82ms, mfu 0.21%
+[2360]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2360: loss 1.5647, time 104.29ms, mfu 0.21%
+[2370]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2370: loss 1.4976, time 107.13ms, mfu 0.21%
+[2380]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2380: loss 1.4991, time 106.64ms, mfu 0.21%
+[2390]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2390: loss 1.5279, time 101.41ms, mfu 0.21%
+[2400]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2400: loss 1.5540, time 105.08ms, mfu 0.21%
+[2410]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2410: loss 1.4901, time 103.24ms, mfu 0.21%
+[2420]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2420: loss 1.5597, time 103.16ms, mfu 0.22%
+[2430]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2430: loss 1.5237, time 126.51ms, mfu 0.21%
+[2440]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2440: loss 1.5286, time 133.13ms, mfu 0.21%
+[2450]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2450: loss 1.4738, time 108.37ms, mfu 0.21%
+[2460]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2460: loss 1.4719, time 101.26ms, mfu 0.21%
+[2470]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2470: loss 1.4594, time 109.97ms, mfu 0.21%
+[2480]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2480: loss 1.5543, time 106.76ms, mfu 0.21%
+[2490]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2490: loss 1.5331, time 102.81ms, mfu 0.21%
+[2500]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 2500: train loss 1.4369, val loss 1.6229
+saving checkpoint to out-shakespeare-char
+iter 2500: loss 1.5849, time 9547.47ms, mfu 0.19%
+[2510]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2510: loss 1.5626, time 104.69ms, mfu 0.20%
+[2520]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2520: loss 1.5589, time 155.99ms, mfu 0.19%
+[2530]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2530: loss 1.5119, time 105.36ms, mfu 0.19%
+[2540]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2540: loss 1.5330, time 146.06ms, mfu 0.19%
+[2550]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2550: loss 1.4918, time 108.93ms, mfu 0.19%
+[2560]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2560: loss 1.4940, time 106.13ms, mfu 0.20%
+[2570]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2570: loss 1.5071, time 107.82ms, mfu 0.20%
+[2580]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2580: loss 1.5224, time 109.65ms, mfu 0.20%
+[2590]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2590: loss 1.4665, time 106.27ms, mfu 0.20%
+[2600]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2600: loss 1.5245, time 105.86ms, mfu 0.20%
+[2610]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2610: loss 1.4856, time 111.75ms, mfu 0.20%
+[2620]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2620: loss 1.5363, time 106.17ms, mfu 0.21%
+[2630]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2630: loss 1.4274, time 105.84ms, mfu 0.21%
+[2640]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2640: loss 1.5280, time 106.36ms, mfu 0.21%
+[2650]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2650: loss 1.4922, time 103.58ms, mfu 0.21%
+[2660]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2660: loss 1.4868, time 99.16ms, mfu 0.21%
+[2670]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2670: loss 1.4915, time 103.42ms, mfu 0.21%
+[2680]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2680: loss 1.4855, time 102.55ms, mfu 0.22%
+[2690]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2690: loss 1.5227, time 104.26ms, mfu 0.22%
+[2700]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2700: loss 1.5124, time 155.82ms, mfu 0.21%
+[2710]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2710: loss 1.4636, time 107.09ms, mfu 0.21%
+[2720]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2720: loss 1.4800, time 179.25ms, mfu 0.20%
+[2730]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2730: loss 1.5215, time 108.30ms, mfu 0.20%
+[2740]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2740: loss 1.5056, time 106.06ms, mfu 0.21%
+[2750]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 2750: train loss 1.4131, val loss 1.6074
+saving checkpoint to out-shakespeare-char
+iter 2750: loss 1.5250, time 8350.46ms, mfu 0.19%
+[2760]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2760: loss 1.4987, time 104.45ms, mfu 0.19%
+[2770]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2770: loss 1.4977, time 104.62ms, mfu 0.19%
+[2780]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2780: loss 1.4447, time 151.80ms, mfu 0.19%
+[2790]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2790: loss 1.4513, time 140.86ms, mfu 0.19%
+[2800]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2800: loss 1.4495, time 118.69ms, mfu 0.19%
+[2810]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2810: loss 1.4975, time 106.30ms, mfu 0.19%
+[2820]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2820: loss 1.4984, time 106.38ms, mfu 0.19%
+[2830]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2830: loss 1.5189, time 105.74ms, mfu 0.20%
+[2840]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2840: loss 1.4611, time 105.56ms, mfu 0.20%
+[2850]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2850: loss 1.4731, time 124.15ms, mfu 0.20%
+[2860]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2860: loss 1.4971, time 107.07ms, mfu 0.20%
+[2870]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2870: loss 1.5048, time 107.31ms, mfu 0.20%
+[2880]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2880: loss 1.4796, time 104.74ms, mfu 0.20%
+[2890]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2890: loss 1.4952, time 106.95ms, mfu 0.21%
+[2900]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2900: loss 1.4760, time 108.53ms, mfu 0.21%
+[2910]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2910: loss 1.4928, time 104.48ms, mfu 0.21%
+[2920]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2920: loss 1.4463, time 105.72ms, mfu 0.21%
+[2930]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2930: loss 1.5064, time 114.66ms, mfu 0.21%
+[2940]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2940: loss 1.4568, time 108.75ms, mfu 0.21%
+[2950]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2950: loss 1.4601, time 107.41ms, mfu 0.21%
+[2960]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2960: loss 1.4872, time 108.55ms, mfu 0.21%
+[2970]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2970: loss 1.4445, time 107.27ms, mfu 0.21%
+[2980]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2980: loss 1.5251, time 104.31ms, mfu 0.21%
+[2990]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 2990: loss 1.4521, time 107.99ms, mfu 0.21%
+[3000]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 3000: train loss 1.4000, val loss 1.5993
+saving checkpoint to out-shakespeare-char
+iter 3000: loss 1.4801, time 8544.00ms, mfu 0.19%
+[3010]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3010: loss 1.4357, time 100.93ms, mfu 0.20%
+[3020]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3020: loss 1.5079, time 108.55ms, mfu 0.20%
+[3030]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3030: loss 1.4644, time 118.36ms, mfu 0.20%
+[3040]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3040: loss 1.4277, time 111.11ms, mfu 0.20%
+[3050]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3050: loss 1.4607, time 104.96ms, mfu 0.20%
+[3060]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3060: loss 1.4846, time 106.54ms, mfu 0.20%
+[3070]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3070: loss 1.4456, time 117.23ms, mfu 0.20%
+[3080]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3080: loss 1.4838, time 104.10ms, mfu 0.20%
+[3090]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3090: loss 1.4812, time 102.21ms, mfu 0.21%
+[3100]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3100: loss 1.4801, time 106.29ms, mfu 0.21%
+[3110]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3110: loss 1.4405, time 103.60ms, mfu 0.21%
+[3120]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3120: loss 1.4622, time 109.31ms, mfu 0.21%
+[3130]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3130: loss 1.4872, time 107.19ms, mfu 0.21%
+[3140]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3140: loss 1.4526, time 103.82ms, mfu 0.21%
+[3150]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3150: loss 1.5064, time 107.43ms, mfu 0.21%
+[3160]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3160: loss 1.4651, time 104.77ms, mfu 0.21%
+[3170]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3170: loss 1.3947, time 104.59ms, mfu 0.21%
+[3180]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3180: loss 1.5126, time 104.04ms, mfu 0.22%
+[3190]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3190: loss 1.5123, time 108.40ms, mfu 0.22%
+[3200]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3200: loss 1.4514, time 107.87ms, mfu 0.22%
+[3210]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3210: loss 1.4987, time 105.09ms, mfu 0.22%
+[3220]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3220: loss 1.4656, time 106.54ms, mfu 0.22%
+[3230]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3230: loss 1.4341, time 104.96ms, mfu 0.22%
+[3240]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3240: loss 1.4456, time 103.94ms, mfu 0.22%
+[3250]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 3250: train loss 1.3704, val loss 1.5726
+saving checkpoint to out-shakespeare-char
+iter 3250: loss 1.4299, time 8427.90ms, mfu 0.20%
+[3260]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3260: loss 1.4832, time 107.55ms, mfu 0.20%
+[3270]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3270: loss 1.4280, time 102.46ms, mfu 0.20%
+[3280]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3280: loss 1.4758, time 102.26ms, mfu 0.20%
+[3290]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3290: loss 1.4007, time 101.87ms, mfu 0.21%
+[3300]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3300: loss 1.4347, time 105.75ms, mfu 0.21%
+[3310]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3310: loss 1.4511, time 103.97ms, mfu 0.21%
+[3320]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3320: loss 1.4235, time 104.51ms, mfu 0.21%
+[3330]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3330: loss 1.4203, time 104.23ms, mfu 0.21%
+[3340]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3340: loss 1.4122, time 104.23ms, mfu 0.21%
+[3350]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3350: loss 1.4859, time 105.91ms, mfu 0.21%
+[3360]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3360: loss 1.4458, time 106.50ms, mfu 0.21%
+[3370]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3370: loss 1.4532, time 104.31ms, mfu 0.22%
+[3380]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3380: loss 1.4844, time 106.92ms, mfu 0.22%
+[3390]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3390: loss 1.4138, time 103.57ms, mfu 0.22%
+[3400]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3400: loss 1.4222, time 109.87ms, mfu 0.22%
+[3410]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3410: loss 1.4351, time 104.57ms, mfu 0.22%
+[3420]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3420: loss 1.4755, time 102.99ms, mfu 0.22%
+[3430]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3430: loss 1.4828, time 104.81ms, mfu 0.22%
+[3440]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3440: loss 1.4455, time 106.98ms, mfu 0.22%
+[3450]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3450: loss 1.4793, time 104.80ms, mfu 0.22%
+[3460]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3460: loss 1.4581, time 103.88ms, mfu 0.22%
+[3470]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3470: loss 1.4640, time 102.57ms, mfu 0.22%
+[3480]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3480: loss 1.4656, time 101.88ms, mfu 0.22%
+[3490]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3490: loss 1.4519, time 101.93ms, mfu 0.22%
+[3500]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 3500: train loss 1.3624, val loss 1.5684
+saving checkpoint to out-shakespeare-char
+iter 3500: loss 1.4356, time 8648.19ms, mfu 0.20%
+[3510]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3510: loss 1.4196, time 105.95ms, mfu 0.20%
+[3520]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3520: loss 1.4337, time 103.00ms, mfu 0.20%
+[3530]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3530: loss 1.4465, time 102.17ms, mfu 0.21%
+[3540]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3540: loss 1.3786, time 104.47ms, mfu 0.21%
+[3550]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3550: loss 1.4356, time 105.41ms, mfu 0.21%
+[3560]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3560: loss 1.4532, time 103.92ms, mfu 0.21%
+[3570]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3570: loss 1.4772, time 103.29ms, mfu 0.21%
+[3580]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3580: loss 1.4355, time 103.90ms, mfu 0.21%
+[3590]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3590: loss 1.3706, time 103.70ms, mfu 0.22%
+[3600]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3600: loss 1.4682, time 103.28ms, mfu 0.22%
+[3610]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3610: loss 1.3991, time 105.92ms, mfu 0.22%
+[3620]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3620: loss 1.4271, time 103.72ms, mfu 0.22%
+[3630]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3630: loss 1.4266, time 103.56ms, mfu 0.22%
+[3640]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3640: loss 1.4574, time 104.88ms, mfu 0.22%
+[3650]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3650: loss 1.4617, time 104.45ms, mfu 0.22%
+[3660]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3660: loss 1.4236, time 103.24ms, mfu 0.22%
+[3670]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3670: loss 1.4774, time 103.43ms, mfu 0.22%
+[3680]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3680: loss 1.4522, time 104.59ms, mfu 0.22%
+[3690]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3690: loss 1.4689, time 106.70ms, mfu 0.22%
+[3700]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3700: loss 1.4338, time 107.50ms, mfu 0.22%
+[3710]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3710: loss 1.4103, time 104.05ms, mfu 0.22%
+[3720]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3720: loss 1.4005, time 104.35ms, mfu 0.22%
+[3730]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3730: loss 1.4564, time 106.37ms, mfu 0.22%
+[3740]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3740: loss 1.4721, time 122.14ms, mfu 0.22%
+[3750]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 3750: train loss 1.3407, val loss 1.5593
+saving checkpoint to out-shakespeare-char
+iter 3750: loss 1.4176, time 8645.95ms, mfu 0.20%
+[3760]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3760: loss 1.4178, time 106.03ms, mfu 0.20%
+[3770]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3770: loss 1.5058, time 107.66ms, mfu 0.20%
+[3780]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3780: loss 1.4124, time 102.43ms, mfu 0.20%
+[3790]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3790: loss 1.3819, time 105.83ms, mfu 0.21%
+[3800]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3800: loss 1.4422, time 109.25ms, mfu 0.21%
+[3810]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3810: loss 1.4426, time 111.33ms, mfu 0.21%
+[3820]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3820: loss 1.4542, time 103.49ms, mfu 0.21%
+[3830]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3830: loss 1.4367, time 106.40ms, mfu 0.21%
+[3840]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3840: loss 1.4090, time 104.90ms, mfu 0.21%
+[3850]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3850: loss 1.3630, time 104.01ms, mfu 0.21%
+[3860]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3860: loss 1.4189, time 105.50ms, mfu 0.21%
+[3870]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3870: loss 1.4459, time 105.15ms, mfu 0.21%
+[3880]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3880: loss 1.5095, time 107.44ms, mfu 0.21%
+[3890]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3890: loss 1.4204, time 105.99ms, mfu 0.21%
+[3900]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3900: loss 1.4056, time 105.17ms, mfu 0.22%
+[3910]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3910: loss 1.4599, time 101.95ms, mfu 0.22%
+[3920]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3920: loss 1.4544, time 105.41ms, mfu 0.22%
+[3930]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3930: loss 1.4034, time 103.29ms, mfu 0.22%
+[3940]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3940: loss 1.4009, time 104.75ms, mfu 0.22%
+[3950]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3950: loss 1.4517, time 102.36ms, mfu 0.22%
+[3960]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3960: loss 1.3772, time 105.12ms, mfu 0.22%
+[3970]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3970: loss 1.4169, time 104.95ms, mfu 0.22%
+[3980]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3980: loss 1.3743, time 106.83ms, mfu 0.22%
+[3990]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 3990: loss 1.4089, time 104.09ms, mfu 0.22%
+[4000]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 4000: train loss 1.3377, val loss 1.5520
+saving checkpoint to out-shakespeare-char
+iter 4000: loss 1.4043, time 8346.58ms, mfu 0.20%
+[4010]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4010: loss 1.3801, time 105.46ms, mfu 0.20%
+[4020]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4020: loss 1.3518, time 105.34ms, mfu 0.20%
+[4030]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4030: loss 1.3967, time 103.92ms, mfu 0.21%
+[4040]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4040: loss 1.4008, time 103.91ms, mfu 0.21%
+[4050]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4050: loss 1.4093, time 104.78ms, mfu 0.21%
+[4060]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4060: loss 1.4589, time 167.64ms, mfu 0.20%
+[4070]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4070: loss 1.4478, time 104.66ms, mfu 0.20%
+[4080]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4080: loss 1.4340, time 106.04ms, mfu 0.21%
+[4090]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4090: loss 1.4012, time 105.69ms, mfu 0.21%
+[4100]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4100: loss 1.3957, time 103.06ms, mfu 0.21%
+[4110]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4110: loss 1.4141, time 103.75ms, mfu 0.21%
+[4120]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4120: loss 1.3972, time 105.01ms, mfu 0.21%
+[4130]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4130: loss 1.3782, time 105.57ms, mfu 0.21%
+[4140]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4140: loss 1.4234, time 105.65ms, mfu 0.21%
+[4150]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4150: loss 1.4070, time 103.46ms, mfu 0.21%
+[4160]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4160: loss 1.4208, time 103.48ms, mfu 0.22%
+[4170]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4170: loss 1.4316, time 103.49ms, mfu 0.22%
+[4180]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4180: loss 1.3622, time 101.24ms, mfu 0.22%
+[4190]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4190: loss 1.4143, time 103.72ms, mfu 0.22%
+[4200]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4200: loss 1.4405, time 105.52ms, mfu 0.22%
+[4210]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4210: loss 1.3978, time 109.15ms, mfu 0.22%
+[4220]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4220: loss 1.4309, time 106.23ms, mfu 0.22%
+[4230]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4230: loss 1.3881, time 105.07ms, mfu 0.22%
+[4240]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4240: loss 1.3793, time 104.40ms, mfu 0.22%
+[4250]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 4250: train loss 1.3306, val loss 1.5499
+saving checkpoint to out-shakespeare-char
+iter 4250: loss 1.4073, time 8978.11ms, mfu 0.20%
+[4260]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4260: loss 1.4488, time 106.81ms, mfu 0.20%
+[4270]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4270: loss 1.3983, time 104.33ms, mfu 0.20%
+[4280]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4280: loss 1.3969, time 115.64ms, mfu 0.20%
+[4290]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4290: loss 1.4061, time 110.93ms, mfu 0.20%
+[4300]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4300: loss 1.4338, time 120.24ms, mfu 0.20%
+[4310]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4310: loss 1.4235, time 117.21ms, mfu 0.20%
+[4320]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4320: loss 1.4048, time 116.26ms, mfu 0.20%
+[4330]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4330: loss 1.4664, time 105.32ms, mfu 0.20%
+[4340]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4340: loss 1.3833, time 109.51ms, mfu 0.20%
+[4350]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4350: loss 1.3919, time 118.02ms, mfu 0.20%
+[4360]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4360: loss 1.4314, time 104.51ms, mfu 0.21%
+[4370]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4370: loss 1.3867, time 117.00ms, mfu 0.21%
+[4380]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4380: loss 1.4156, time 105.82ms, mfu 0.21%
+[4390]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4390: loss 1.4134, time 107.37ms, mfu 0.21%
+[4400]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4400: loss 1.3918, time 119.09ms, mfu 0.21%
+[4410]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4410: loss 1.3513, time 104.65ms, mfu 0.21%
+[4420]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4420: loss 1.4169, time 105.46ms, mfu 0.21%
+[4430]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4430: loss 1.3906, time 105.09ms, mfu 0.21%
+[4440]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4440: loss 1.4172, time 102.23ms, mfu 0.21%
+[4450]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4450: loss 1.4024, time 107.40ms, mfu 0.21%
+[4460]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4460: loss 1.3430, time 104.61ms, mfu 0.21%
+[4470]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4470: loss 1.4285, time 102.53ms, mfu 0.22%
+[4480]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4480: loss 1.4598, time 105.74ms, mfu 0.22%
+[4490]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4490: loss 1.4547, time 105.10ms, mfu 0.22%
+[4500]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 4500: train loss 1.3203, val loss 1.5331
+saving checkpoint to out-shakespeare-char
+iter 4500: loss 1.3849, time 10497.96ms, mfu 0.20%
+[4510]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4510: loss 1.3741, time 112.36ms, mfu 0.20%
+[4520]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4520: loss 1.4238, time 103.97ms, mfu 0.20%
+[4530]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4530: loss 1.3708, time 104.49ms, mfu 0.20%
+[4540]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4540: loss 1.4046, time 103.54ms, mfu 0.20%
+[4550]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4550: loss 1.4213, time 102.39ms, mfu 0.21%
+[4560]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4560: loss 1.4210, time 108.73ms, mfu 0.21%
+[4570]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4570: loss 1.3648, time 131.68ms, mfu 0.20%
+[4580]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4580: loss 1.3614, time 118.90ms, mfu 0.20%
+[4590]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4590: loss 1.4342, time 106.54ms, mfu 0.21%
+[4600]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4600: loss 1.4208, time 109.73ms, mfu 0.21%
+[4610]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4610: loss 1.3768, time 109.81ms, mfu 0.21%
+[4620]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4620: loss 1.3758, time 105.28ms, mfu 0.21%
+[4630]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4630: loss 1.3465, time 113.68ms, mfu 0.21%
+[4640]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4640: loss 1.4453, time 104.20ms, mfu 0.21%
+[4650]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4650: loss 1.3922, time 125.21ms, mfu 0.21%
+[4660]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4660: loss 1.4375, time 136.21ms, mfu 0.20%
+[4670]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4670: loss 1.4119, time 153.74ms, mfu 0.20%
+[4680]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4680: loss 1.3554, time 153.38ms, mfu 0.19%
+[4690]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4690: loss 1.3762, time 149.49ms, mfu 0.19%
+[4700]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4700: loss 1.3932, time 116.98ms, mfu 0.19%
+[4710]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4710: loss 1.3781, time 111.18ms, mfu 0.19%
+[4720]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4720: loss 1.4140, time 106.37ms, mfu 0.20%
+[4730]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4730: loss 1.3681, time 117.23ms, mfu 0.20%
+[4740]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4740: loss 1.3812, time 162.66ms, mfu 0.19%
+[4750]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 4750: train loss 1.3152, val loss 1.5377
+iter 4750: loss 1.3981, time 10230.10ms, mfu 0.17%
+[4760]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4760: loss 1.3856, time 103.78ms, mfu 0.18%
+[4770]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4770: loss 1.3957, time 110.10ms, mfu 0.18%
+[4780]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4780: loss 1.3699, time 109.65ms, mfu 0.18%
+[4790]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4790: loss 1.4015, time 106.25ms, mfu 0.19%
+[4800]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4800: loss 1.4075, time 114.66ms, mfu 0.19%
+[4810]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4810: loss 1.4273, time 109.48ms, mfu 0.19%
+[4820]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4820: loss 1.4275, time 108.06ms, mfu 0.19%
+[4830]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4830: loss 1.3962, time 106.42ms, mfu 0.20%
+[4840]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4840: loss 1.4034, time 103.78ms, mfu 0.20%
+[4850]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4850: loss 1.3863, time 101.68ms, mfu 0.20%
+[4860]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4860: loss 1.3584, time 113.11ms, mfu 0.20%
+[4870]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4870: loss 1.3713, time 105.75ms, mfu 0.20%
+[4880]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4880: loss 1.3990, time 106.97ms, mfu 0.21%
+[4890]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4890: loss 1.4159, time 102.89ms, mfu 0.21%
+[4900]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4900: loss 1.4772, time 104.42ms, mfu 0.21%
+[4910]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4910: loss 1.4151, time 100.59ms, mfu 0.21%
+[4920]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4920: loss 1.3686, time 106.08ms, mfu 0.21%
+[4930]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4930: loss 1.3898, time 105.53ms, mfu 0.21%
+[4940]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4940: loss 1.3945, time 103.82ms, mfu 0.21%
+[4950]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4950: loss 1.3646, time 105.36ms, mfu 0.22%
+[4960]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4960: loss 1.4319, time 104.13ms, mfu 0.22%
+[4970]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4970: loss 1.3468, time 110.95ms, mfu 0.22%
+[4980]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4980: loss 1.4076, time 109.43ms, mfu 0.22%
+[4990]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+iter 4990: loss 1.4481, time 105.20ms, mfu 0.22%
+[5000]: wandb_log: True, wandb_run s2818750-university-of-edinburgh
+step 5000: train loss 1.3124, val loss 1.5281
+saving checkpoint to out-shakespeare-char
+iter 5000: loss 1.3742, time 9221.31ms, mfu 0.19%
