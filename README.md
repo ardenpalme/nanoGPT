@@ -239,3 +239,10 @@ git branch -u origin/main main
 git remote set-head origin -a
 
 python train.py config/train_shakespeare_char.py --device=xpu  --compile=False --wandb_log=True
+
+## RSCAM Group Project Notes
+```
+python data/shakespeare_char/prepare.py
+python train.py config/train_shakespeare_char.py --wandb_log=True
+python sample.py --out_dir=out-shakespeare-char
+```
