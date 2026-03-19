@@ -1,4 +1,3 @@
-from tabulate import tabulate
 """
 Sample from a trained model
 """
@@ -8,10 +7,12 @@ from contextlib import nullcontext
 import torch
 import tiktoken
 from model import GPTConfig, GPT
+from lib.utils import get_batch
 
 # -----------------------------------------------------------------------------
+dataset='shakespeare_char'
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
-out_dir = 'out' # ignored if init_from is not 'resume'
+out_dir = 'out-shakespeare-char' # ignored if init_from is not 'resume'
 start = "FILE:data/prompt.txt" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 num_samples = 10 # number of samples to draw
 max_new_tokens = 100 # number of tokens generated in each sample
@@ -22,6 +23,13 @@ device = 'cpu' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1', etc.
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32' or 'bfloat16' or 'float16'
 compile = False # use PyTorch 2.0 to compile the model to be faster
 exec(open('configurator.py').read()) # overrides from command line or config file
+# -----------------------------------------------------------------------------
+def show_metrics(model):
+    data_dir = os.path.join('data', dataset)
+    print(f"data directory {data_dir}")
+    X, Y = get_batch('val', data_dir, device, 'cpu', model.config.block_size, model.config.batch_size)
+    logits, loss = model(X, Y)
+    print(f"(h={model.config.n_head}, d={model.config.n_embd}, d_p={model.config.dp}, n={model.config.block_size}, n_params={model.get_num_params()}) perplexity={torch.exp(loss):.4f}")
 # -----------------------------------------------------------------------------
 
 torch.manual_seed(seed)
@@ -82,8 +90,10 @@ start_ids = encode(start)
 x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
 print(f"sequence length n={x.shape[1]-1}")
 
+
 # run generation
 with torch.no_grad():
+    show_metrics(model)
     with ctx:
         for k in range(num_samples):
             y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)

@@ -20,12 +20,12 @@ gradient_accumulation_steps = 1
 batch_size = 32
 block_size = 128
 
-# baby GPT model :)
-n_layer = 6
-n_head = 6
+n_layer = 4
+n_head = 4
 head_size = 32
 n_embd = 192
 dropout = 0.2
+dp = 50
 
 learning_rate = 1e-3 # with baby networks can afford to go a bit higher
 max_iters = 5000
