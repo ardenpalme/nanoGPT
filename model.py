@@ -107,7 +107,8 @@ class GPTConfig:
     n_layer: int = 12
     n_head: int = 8
     head_size: int = 96
-    n_embd: int = 768       # must have head_size * n_heads == n_embd
+    n_embd: int = 768       
+    batch_size: int = 10
     dropout: float = 0.0
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
 

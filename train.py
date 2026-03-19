@@ -57,7 +57,6 @@ n_head = 12
 head_size= 95
 n_embd = 768
 dropout = 0.0 # for pretraining 0 is good, for finetuning try 0.1+
-dp=40
 bias = False # do we use bias inside LayerNorm and Linear layers?
 # adamw optimizer
 learning_rate = 6e-4 # max learning rate
@@ -132,7 +131,7 @@ if os.path.exists(meta_path):
     print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
 
 # model init
-model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, dp=dp, n_embd=n_embd, block_size=block_size, batch_size=batch_size
+model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, n_embd=n_embd, block_size=block_size, batch_size=batch_size,
                   bias=bias, vocab_size=None, dropout=dropout) # start with model_args from command line
 if init_from == 'scratch':
     # init a new model from scratch
@@ -240,7 +239,7 @@ if wandb_log and master_process:
 
 # training loop
 X, Y = get_batch('train', data_dir, device, device_type, block_size, batch_size) # fetch the very first batch
-print(f"batch X of shape {X.shape}")
+# X has shape (batch_size, block_size) or vice versa?
 
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
@@ -279,7 +278,7 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
                         'best_val_loss': best_val_loss,
                         'config': config,
                     }
-                    #print(f"(iteration {iter_num}) saving checkpoint to {out_dir}")
+                    # print(f"(iteration {iter_num}) saving checkpoint to {out_dir}")
                     torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
         if iter_num == 0 and eval_only:
             break

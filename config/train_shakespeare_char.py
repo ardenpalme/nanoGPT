@@ -3,7 +3,7 @@
 
 import datetime
 
-out_dir = 'out-shakespeare-char'
+out_dir = 'out-shakespeare-char/multihead'
 eval_interval = 250 # keep frequent because we'll overfit
 eval_iters = 100
 log_interval = 10 # don't print too too often
@@ -17,15 +17,14 @@ wandb_run_name = 'mini-gpt ' + datetime.datetime.now().strftime("%m/%d/%y %H:%M:
 
 dataset = 'shakespeare_char'
 gradient_accumulation_steps = 1
-batch_size = 32
-block_size = 128
+batch_size = 16
+block_size = 16 # input sequence length
 
-n_layer = 4
+n_layer = 2
 n_head = 4
 head_size = 32
-n_embd = 192
+n_embd = 128 # n_embed == head_size * n_heads
 dropout = 0.2
-dp = 50
 
 learning_rate = 1e-3 # with baby networks can afford to go a bit higher
 max_iters = 5000

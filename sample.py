@@ -12,7 +12,7 @@ from lib.utils import get_batch
 # -----------------------------------------------------------------------------
 dataset='shakespeare_char'
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
-out_dir = 'out-shakespeare-char' # ignored if init_from is not 'resume'
+out_dir = 'out-shakespeare-char/multihead' # ignored if init_from is not 'resume'
 start = "FILE:data/prompt.txt" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 num_samples = 10 # number of samples to draw
 max_new_tokens = 100 # number of tokens generated in each sample
@@ -29,7 +29,7 @@ def show_metrics(model):
     print(f"data directory {data_dir}")
     X, Y = get_batch('val', data_dir, device, 'cpu', model.config.block_size, model.config.batch_size)
     logits, loss = model(X, Y)
-    print(f"(h={model.config.n_head}, d={model.config.n_embd}, d_p={model.config.dp}, n={model.config.block_size}, n_params={model.get_num_params()}) perplexity={torch.exp(loss):.4f}")
+    print(f"(h={model.config.n_head}, d={model.config.n_embd}, dp={model.config.head_size}, n={model.config.block_size}, n_params={model.get_num_params()}) perplexity={torch.exp(loss):.4f}")
 # -----------------------------------------------------------------------------
 
 torch.manual_seed(seed)
@@ -88,14 +88,14 @@ if start.startswith('FILE:'):
         start = f.read()
 start_ids = encode(start)
 x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
-print(f"sequence length n={x.shape[1]-1}")
-
 
 # run generation
 with torch.no_grad():
     show_metrics(model)
+    '''
     with ctx:
         for k in range(num_samples):
             y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
             print(decode(y[0].tolist()))
             print('---------------')
+    '''
