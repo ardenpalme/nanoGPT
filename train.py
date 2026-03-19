@@ -54,6 +54,7 @@ block_size = 1024
 # model
 n_layer = 12
 n_head = 12
+head_size= 95
 n_embd = 768
 dropout = 0.0 # for pretraining 0 is good, for finetuning try 0.1+
 bias = False # do we use bias inside LayerNorm and Linear layers?
@@ -147,7 +148,7 @@ if os.path.exists(meta_path):
     print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
 
 # model init
-model_args = dict(n_layer=n_layer, n_head=n_head, n_embd=n_embd, block_size=block_size,
+model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, n_embd=n_embd, block_size=block_size,
                   bias=bias, vocab_size=None, dropout=dropout) # start with model_args from command line
 if init_from == 'scratch':
     # init a new model from scratch
@@ -229,6 +230,7 @@ def estimate_loss():
             with ctx:
                 logits, loss = model(X, Y)
             losses[k] = loss.item()
+            print(f"eval iter {k}: rank(X)={torch.linalg.matrix_rank(X.float())}")
         out[split] = losses.mean()
     model.train()
     return out
@@ -254,6 +256,8 @@ if wandb_log and master_process:
 
 # training loop
 X, Y = get_batch('train') # fetch the very first batch
+print(f"batch X of shape {X.shape}")
+
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
@@ -277,6 +281,7 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
                     "train/loss": losses['train'],
                     "val/loss": losses['val'],
                     "lr": lr,
+                    "val_perp": torch.exp(losses['val']),
                     "mfu": running_mfu*100, # convert to percentage
                 })
             if losses['val'] < best_val_loss or always_save_checkpoint:
