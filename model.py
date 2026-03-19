@@ -32,9 +32,9 @@ class CausalSelfAttention(nn.Module):
         super().__init__()
         #assert config.n_embd % config.n_head == 0
         # key, query, value projections for all heads, but in a batch. all learnt so it just outputs 3 vectors, one for each token to then make a matrix of attention scores
-        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_head*config.head_size, bias=config.bias)
+        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_head * config.dp, bias=config.bias)
         # output projection
-        self.c_proj = nn.Linear( config.n_head*config.head_size,config.n_embd, bias=config.bias)
+        self.c_proj = nn.Linear(config.n_head * config.dp, config.n_embd, bias=config.bias)
         # regularization
         self.attn_dropout = nn.Dropout(config.dropout)
         self.resid_dropout = nn.Dropout(config.dropout)
@@ -42,6 +42,7 @@ class CausalSelfAttention(nn.Module):
         self.n_embd = config.n_embd
         self.head_size = config.head_size
         self.dropout = config.dropout
+        self.dp = config.dp
 
         # causal mask to ensure that attention is only applied to the left in the input sequence
         self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
@@ -51,21 +52,20 @@ class CausalSelfAttention(nn.Module):
         B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
 
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-        q, k, v  = self.c_attn(x).split(self.head_size*self.n_head, dim=2)
-        k = k.view(B, T, self.n_head, self.head_size).transpose(1, 2) # (B, nh, T, hs)
-        q = q.view(B, T, self.n_head, self.head_size).transpose(1, 2) # (B, nh, T, hs)
-        v = v.view(B, T, self.n_head, self.head_size).transpose(1, 2) # (B, nh, T, hs)
+        q, k, v  = self.c_attn(x).split(self.n_head * self.dp, dim=2) 
+        q = q.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
+        k = k.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
+        v = v.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
 
-        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
+        # causal self-attention; Self-attend: (B, nh, T, dp) x (B, nh, dp, T) -> (B, nh, T, T)
         # manual implementation of attention
-        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(C / self.n_head))
+        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(self.dp))
         att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
         att = F.softmax(att, dim=-1) # This is stochastic matrix P in low-rank bottleneck paper
         att = self.attn_dropout(att)
-        y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
-        y = y.transpose(1, 2).contiguous().view(B, T, self.n_head * self.head_size) # re-assemble all head outputs side by side
-        # @assert(self.n_heads * self.head_size == C (embedding dimensionality)) always
-
+        y = att @ v # (B, nh, T, T) x (B, nh, T, dp) -> (B, nh, T, dp)
+        y = y.transpose(1, 2).contiguous().view(B, T, self.n_head * self.dp) # re-assemble all head outputs side by side
+        
         # output projection
         y = self.resid_dropout(self.c_proj(y))
         return y
@@ -107,6 +107,8 @@ class GPTConfig:
     n_layer: int = 12
     n_head: int = 8
     head_size: int = 96
+    batch_size: int = 12    # for getting batches only
+    dp: int = 40
     n_embd: int = 768       # must have head_size * n_heads == n_embd
     dropout: float = 0.0
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
