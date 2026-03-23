@@ -326,3 +326,17 @@ class GPT(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)
 
         return idx
+
+    @torch.no_grad()
+    def get_weights(self, layer_idx):
+        layer_it = 0
+        for block in self.transformer.h:
+            if(layer_it == layer_idx):
+                attn = block.attn
+                d = attn.n_head * attn.dp
+                Wq = attn.c_attn.weight[0:d,:]
+                Wk = attn.c_attn.weight[d:2*d, :]
+                Wv = attn.c_attn.weight[2*d:3*d, :]
+                print(f"(layer {layer_it}) Wq: {Wq.shape}, Wk: {Wk.shape}")
+                return Wq, Wk
+            layer_it = layer_it + 1

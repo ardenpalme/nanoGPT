@@ -12,7 +12,7 @@ from lib.utils import get_batch
 # -----------------------------------------------------------------------------
 dataset='shakespeare_char'
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
-out_dir = 'out-shakespeare-char' # ignored if init_from is not 'resume'
+out_dir = 'out-shakespeare-char/fixedmultihead' # ignored if init_from is not 'resume'
 start = "FILE:data/prompt.txt" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 num_samples = 10 # number of samples to draw
 max_new_tokens = 100 # number of tokens generated in each sample
@@ -88,14 +88,15 @@ if start.startswith('FILE:'):
         start = f.read()
 start_ids = encode(start)
 x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
-print(f"sequence length n={x.shape[1]-1}")
-
 
 # run generation
 with torch.no_grad():
     show_metrics(model)
+    Wq, Wk = model.get_weights(0)
+    '''
     with ctx:
         for k in range(num_samples):
             y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
             print(decode(y[0].tolist()))
             print('---------------')
+    '''

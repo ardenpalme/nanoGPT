@@ -34,7 +34,7 @@ from tqdm import tqdm
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
-out_dir = 'out'
+out_dir = 'out-shakespeare-char/fixedmultihead'
 eval_interval = 2000
 log_interval = 1
 eval_iters = 200
@@ -47,7 +47,7 @@ wandb_project = 'owt'
 wandb_run_name = 'gpt'+ str(time.time())
 wandb_run = None
 # data
-dataset = 'openwebtext'
+dataset = 'shakespeare_char'
 gradient_accumulation_steps = 5 * 8 # used to simulate larger batch sizes
 batch_size = 12 # if gradient_accumulation_steps > 1, this is the micro-batch size
 block_size = 1024
@@ -132,7 +132,7 @@ if os.path.exists(meta_path):
     print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
 
 # model init
-model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, dp=dp, n_embd=n_embd, block_size=block_size, batch_size=batch_size
+model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, dp=dp, n_embd=n_embd, block_size=block_size, batch_size=batch_size,
                   bias=bias, vocab_size=None, dropout=dropout) # start with model_args from command line
 if init_from == 'scratch':
     # init a new model from scratch
