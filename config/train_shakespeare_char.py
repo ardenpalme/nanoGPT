@@ -1,7 +1,9 @@
 # train a miniature character-level shakespeare model
 # good for debugging and playing on macbooks and such
 
-out_dir = 'out-shakespeare-char'
+import datetime
+
+out_dir = 'out-shakespeare-char/fixedmultihead'
 eval_interval = 250 # keep frequent because we'll overfit
 eval_iters = 100
 log_interval = 10 # don't print too too often
@@ -11,18 +13,19 @@ always_save_checkpoint = False
 
 wandb_log = False # override via command line if you like
 wandb_project = 'shakespeare-char'
-wandb_run_name = 'mini-gpt'
+wandb_run_name = 'mini-gpt ' + datetime.datetime.now().strftime("%m/%d/%y %H:%M:%S")
 
 dataset = 'shakespeare_char'
 gradient_accumulation_steps = 1
-batch_size = 32
-block_size = 128
+batch_size = 16
+block_size = 16 # input sequence length
 
-# baby GPT model :)
-n_layer = 6
-n_head = 6
-n_embd = 192
+n_layer = 2
+n_head = 4
+head_size = 32
+n_embd = 128
 dropout = 0.2
+dp = 50
 
 learning_rate = 1e-3 # with baby networks can afford to go a bit higher
 max_iters = 5000
@@ -33,5 +36,5 @@ beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
 warmup_iters = 100 # not super necessary potentially
 
 # on macbook also add
-# device = 'cpu'  # run on cpu only
-# compile = False # do not torch compile the model
+device = 'cpu'  # run on cpu only
+compile = False # do not torch compile the model

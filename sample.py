@@ -7,20 +7,29 @@ from contextlib import nullcontext
 import torch
 import tiktoken
 from model import GPTConfig, GPT
+from lib.utils import get_batch
 
 # -----------------------------------------------------------------------------
+dataset='shakespeare_char'
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
-out_dir = 'out' # ignored if init_from is not 'resume'
-start = "\n" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
+out_dir = 'out-shakespeare-char/fixedmultihead' # ignored if init_from is not 'resume'
+start = "FILE:data/prompt.txt" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 num_samples = 10 # number of samples to draw
-max_new_tokens = 500 # number of tokens generated in each sample
-temperature = 0.8 # 1.0 = no change, < 1.0 = less random, > 1.0 = more random, in predictions
+max_new_tokens = 100 # number of tokens generated in each sample
+temperature = 1.0 # 1.0 = no change, < 1.0 = less random, > 1.0 = more random, in predictions
 top_k = 200 # retain only the top_k most likely tokens, clamp others to have 0 probability
 seed = 1337
-device = 'cuda' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1', etc.
+device = 'cpu' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1', etc.
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32' or 'bfloat16' or 'float16'
 compile = False # use PyTorch 2.0 to compile the model to be faster
 exec(open('configurator.py').read()) # overrides from command line or config file
+# -----------------------------------------------------------------------------
+def show_metrics(model):
+    data_dir = os.path.join('data', dataset)
+    print(f"data directory {data_dir}")
+    X, Y = get_batch('val', data_dir, device, 'cpu', model.config.block_size, model.config.batch_size)
+    logits, loss = model(X, Y)
+    print(f"(h={model.config.n_head}, d={model.config.n_embd}, d_p={model.config.dp}, n={model.config.block_size}, n_params={model.get_num_params()}) perplexity={torch.exp(loss):.4f}")
 # -----------------------------------------------------------------------------
 
 torch.manual_seed(seed)
@@ -82,8 +91,12 @@ x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
 
 # run generation
 with torch.no_grad():
+    show_metrics(model)
+    Wq, Wk = model.get_weights(0)
+    '''
     with ctx:
         for k in range(num_samples):
             y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
             print(decode(y[0].tolist()))
             print('---------------')
+    '''

@@ -30,47 +30,42 @@ class CausalSelfAttention(nn.Module):
 
     def __init__(self, config):
         super().__init__()
-        assert config.n_embd % config.n_head == 0
-        # key, query, value projections for all heads, but in a batch
-        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_embd, bias=config.bias)
+        #assert config.n_embd % config.n_head == 0
+        # key, query, value projections for all heads, but in a batch. all learnt so it just outputs 3 vectors, one for each token to then make a matrix of attention scores
+        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_head * config.dp, bias=config.bias)
         # output projection
-        self.c_proj = nn.Linear(config.n_embd, config.n_embd, bias=config.bias)
+        self.c_proj = nn.Linear(config.n_head * config.dp, config.n_embd, bias=config.bias)
         # regularization
         self.attn_dropout = nn.Dropout(config.dropout)
         self.resid_dropout = nn.Dropout(config.dropout)
         self.n_head = config.n_head
         self.n_embd = config.n_embd
+        self.head_size = config.head_size
         self.dropout = config.dropout
-        # flash attention make GPU go brrrrr but support is only in PyTorch >= 2.0
-        self.flash = hasattr(torch.nn.functional, 'scaled_dot_product_attention')
-        if not self.flash:
-            print("WARNING: using slow attention. Flash Attention requires PyTorch >= 2.0")
-            # causal mask to ensure that attention is only applied to the left in the input sequence
-            self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
-                                        .view(1, 1, config.block_size, config.block_size))
+        self.dp = config.dp
+
+        # causal mask to ensure that attention is only applied to the left in the input sequence
+        self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
+                                    .view(1, 1, config.block_size, config.block_size))
 
     def forward(self, x):
         B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
 
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-        q, k, v  = self.c_attn(x).split(self.n_embd, dim=2)
-        k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        q, k, v  = self.c_attn(x).split(self.n_head * self.dp, dim=2) 
+        q = q.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
+        k = k.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
+        v = v.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
 
-        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
-        if self.flash:
-            # efficient attention using Flash Attention CUDA kernels
-            y = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=self.dropout if self.training else 0, is_causal=True)
-        else:
-            # manual implementation of attention
-            att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
-            att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
-            att = F.softmax(att, dim=-1)
-            att = self.attn_dropout(att)
-            y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
-        y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
-
+        # causal self-attention; Self-attend: (B, nh, T, dp) x (B, nh, dp, T) -> (B, nh, T, T)
+        # manual implementation of attention
+        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(self.dp))
+        att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
+        att = F.softmax(att, dim=-1) # This is stochastic matrix P in low-rank bottleneck paper
+        att = self.attn_dropout(att)
+        y = att @ v # (B, nh, T, T) x (B, nh, T, dp) -> (B, nh, T, dp)
+        y = y.transpose(1, 2).contiguous().view(B, T, self.n_head * self.dp) # re-assemble all head outputs side by side
+        
         # output projection
         y = self.resid_dropout(self.c_proj(y))
         return y
@@ -110,8 +105,11 @@ class GPTConfig:
     block_size: int = 1024
     vocab_size: int = 50304 # GPT-2 vocab_size of 50257, padded up to nearest multiple of 64 for efficiency
     n_layer: int = 12
-    n_head: int = 12
-    n_embd: int = 768
+    n_head: int = 8
+    head_size: int = 96
+    batch_size: int = 12    # for getting batches only
+    dp: int = 40
+    n_embd: int = 768       # must have head_size * n_heads == n_embd
     dropout: float = 0.0
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
 
@@ -292,7 +290,7 @@ class GPT(nn.Module):
         # see PaLM paper Appendix B as ref: https://arxiv.org/abs/2204.02311
         N = self.get_num_params()
         cfg = self.config
-        L, H, Q, T = cfg.n_layer, cfg.n_head, cfg.n_embd//cfg.n_head, cfg.block_size
+        L, H, Q, T = cfg.n_layer, cfg.n_head, cfg.head_size, cfg.block_size
         flops_per_token = 6*N + 12*L*H*Q*T
         flops_per_fwdbwd = flops_per_token * T
         flops_per_iter = flops_per_fwdbwd * fwdbwd_per_iter
@@ -328,3 +326,17 @@ class GPT(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)
 
         return idx
+
+    @torch.no_grad()
+    def get_weights(self, layer_idx):
+        layer_it = 0
+        for block in self.transformer.h:
+            if(layer_it == layer_idx):
+                attn = block.attn
+                d = attn.n_head * attn.dp
+                Wq = attn.c_attn.weight[0:d,:]
+                Wk = attn.c_attn.weight[d:2*d, :]
+                Wv = attn.c_attn.weight[2*d:3*d, :]
+                print(f"(layer {layer_it}) Wq: {Wq.shape}, Wk: {Wk.shape}")
+                return Wq, Wk
+            layer_it = layer_it + 1
