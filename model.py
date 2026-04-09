@@ -356,4 +356,4 @@ class GPT(nn.Module):
         # att = attn.attn_dropout(att) # TODO: not in identifiability paper
         T = att @ v # (B, nh, n, n) x (B, nh, n, hs) -> (B, nh, n, hs)
 
-        return A[0,0], T[0,0]
+        return A[0,0].to('cpu').numpy(), T[0,0].to('cpu').numpy()

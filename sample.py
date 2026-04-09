@@ -2,6 +2,8 @@
 Sample from a trained model
 """
 import os
+import numpy as np
+import scipy as sc
 from contextlib import nullcontext
 import torch
 from model import GPTConfig, GPT
@@ -9,7 +11,7 @@ from lib.utils import get_batch
 
 # -----------------------------------------------------------------------------
 dataset='shakespeare_char'
-out_dir = 'out-shakespeare-char/fixedmultihead'
+out_dir = 'out-shakespeare-char'
 start = "FILE:data/prompt.txt" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 num_samples = 10 # number of samples to draw
 max_new_tokens = 100 # number of tokens generated in each sample
@@ -46,3 +48,8 @@ print(model.config)
 with torch.no_grad():
     A,T = model.get_matricies(X)
     print(f"A: {A.shape}, T:{T.shape}")
+    a = A[:,0].reshape(model.config.block_size, 1)
+
+    output= a.T @ T
+    T_aug = np.hstack([output, np.ones((output.shape[0],1))])
+    basis_LN = sc.linalg.null_space(T_aug.T)

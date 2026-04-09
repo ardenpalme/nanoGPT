@@ -233,9 +233,10 @@ For more questions/discussions feel free to stop by **#nanoGPT** on Discord:
 
 All nanoGPT experiments are powered by GPUs on [Lambda labs](https://lambdalabs.com), my favorite Cloud GPU provider. Thank you Lambda labs for sponsoring nanoGPT!
 
-## RSCAM Group Project Notes
+## RSCAM Group Project Notes 
 ```
 python data/shakespeare_char/prepare.py
-python train.py config/train_shakespeare_char.py --wandb_log=True
-python sample.py --out_dir=out-shakespeare-char
+python train.py config/train_shakespeare_char.py
+python sample.py
 ```
+To change the configuration see `config/train_shakespeare_char.py`.

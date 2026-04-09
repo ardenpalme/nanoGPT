@@ -3,7 +3,7 @@
 
 import datetime
 
-out_dir = 'out-shakespeare-char/fixedmultihead'
+out_dir = 'out-shakespeare-char'
 eval_interval = 250 # keep frequent because we'll overfit
 eval_iters = 100
 log_interval = 10 # don't print too too often
@@ -17,13 +17,13 @@ wandb_run_name = 'mini-gpt ' + datetime.datetime.now().strftime("%m/%d/%y %H:%M:
 
 dataset = 'shakespeare_char'
 gradient_accumulation_steps = 1
-batch_size = 16
-block_size = 32 # input sequence length
 
+batch_size = 16
+block_size = 20 # input sequence length
 n_layer = 2
 n_head = 3
-head_size = 40
-n_embd = 256
+head_size = 25
+n_embd = 128   # embedding dimension
 dropout = 0.2
 mlp_width = 4 * n_embd
 
@@ -36,5 +36,5 @@ beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
 warmup_iters = 100 # not super necessary potentially
 
 # on macbook also add
-device = 'xpu'  # run on cpu only
+device = 'cpu'  # run on cpu only
 compile = False # do not torch compile the model
