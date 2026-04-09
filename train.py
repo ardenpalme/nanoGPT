@@ -28,7 +28,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
 
 from model import GPTConfig, GPT
-from lib.utils import get_batch, log_attention_svd 
+from lib.utils import calc_perplexity, get_batch
 from tqdm import tqdm
 
 # -----------------------------------------------------------------------------
@@ -57,7 +57,7 @@ n_head = 12
 head_size= 95
 n_embd = 768
 dropout = 0.0 # for pretraining 0 is good, for finetuning try 0.1+
-dp=40
+mlp_width=4*n_embd
 bias = False # do we use bias inside LayerNorm and Linear layers?
 # adamw optimizer
 learning_rate = 6e-4 # max learning rate
@@ -83,6 +83,7 @@ exec(open('configurator.py').read()) # overrides from command line or config fil
 config = {k: globals()[k] for k in config_keys} # will be useful for logging
 # -----------------------------------------------------------------------------
 
+start_time = time.time()
 # various inits, derived attributes, I/O setup
 ddp = int(os.environ.get('RANK', -1)) != -1 # is this a ddp run?
 if ddp:
@@ -104,11 +105,12 @@ else:
     seed_offset = 0
     ddp_world_size = 1
 tokens_per_iter = gradient_accumulation_steps * ddp_world_size * batch_size * block_size
-print(f"tokens per iteration will be: {tokens_per_iter:,}")
+#print(f"tokens per iteration will be: {tokens_per_iter:,}")
 
 if master_process:
     os.makedirs(out_dir, exist_ok=True)
 torch.manual_seed(1337 + seed_offset)
+np.random.seed(1337 + seed_offset)
 torch.backends.cuda.matmul.allow_tf32 = True # allow tf32 on matmul
 torch.backends.cudnn.allow_tf32 = True # allow tf32 on cudnn
 device_type = 'cuda' if 'cuda' in device else 'cpu' # for later use in torch.autocast
@@ -129,14 +131,18 @@ if os.path.exists(meta_path):
     with open(meta_path, 'rb') as f:
         meta = pickle.load(f)
     meta_vocab_size = meta['vocab_size']
-    print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
+    #print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
 
 # model init
-model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, dp=dp, n_embd=n_embd, block_size=block_size, batch_size=batch_size,
+for k,v in config.items():
+    if k in ['head_size', 'n_embd', 'block_size', 'n_head']:
+        print(f"{k}={v}")
+model_args = dict(n_layer=n_layer, n_head=n_head, head_size=head_size, n_embd=n_embd, block_size=block_size, batch_size=batch_size,
+                  mlp_width=mlp_width,
                   bias=bias, vocab_size=None, dropout=dropout) # start with model_args from command line
 if init_from == 'scratch':
     # init a new model from scratch
-    print("Initializing a new model from scratch")
+    #print("Initializing a new model from scratch")
     # determine the vocab size we'll use for from-scratch training
     if meta_vocab_size is None:
         print("defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)")
@@ -240,8 +246,6 @@ if wandb_log and master_process:
 
 # training loop
 X, Y = get_batch('train', data_dir, device, device_type, block_size, batch_size) # fetch the very first batch
-print(f"batch X of shape {X.shape}")
-
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
@@ -323,11 +327,6 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
                 running_mfu = mfu if running_mfu == -1.0 else 0.9*running_mfu + 0.1*mfu
             #print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%")
 
-            '''
-            if wandb_log and wandb_run:
-                log_attention_svd(model, wandb_run, iter_num);
-            '''
-
         iter_num += 1
         local_iter_num += 1
         pbar.update(1)
@@ -335,6 +334,9 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
         # termination conditions
         if iter_num > max_iters:
             break
+
+#metrics_resp = calc_perplexity(model, device, filepath="val_batch.pkl", elapsed_time=(time.time() - start_time))
+#print(metrics_resp)
 
 if ddp:
     destroy_process_group()

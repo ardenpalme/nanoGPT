@@ -32,9 +32,9 @@ class CausalSelfAttention(nn.Module):
         super().__init__()
         #assert config.n_embd % config.n_head == 0
         # key, query, value projections for all heads, but in a batch. all learnt so it just outputs 3 vectors, one for each token to then make a matrix of attention scores
-        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_head * config.dp, bias=config.bias)
+        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_head * config.head_size, bias=config.bias)
         # output projection
-        self.c_proj = nn.Linear(config.n_head * config.dp, config.n_embd, bias=config.bias)
+        self.c_proj = nn.Linear(config.n_head * config.head_size, config.n_embd, bias=config.bias)
         # regularization
         self.attn_dropout = nn.Dropout(config.dropout)
         self.resid_dropout = nn.Dropout(config.dropout)
@@ -42,7 +42,6 @@ class CausalSelfAttention(nn.Module):
         self.n_embd = config.n_embd
         self.head_size = config.head_size
         self.dropout = config.dropout
-        self.dp = config.dp
 
         # causal mask to ensure that attention is only applied to the left in the input sequence
         self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
@@ -52,19 +51,19 @@ class CausalSelfAttention(nn.Module):
         B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
 
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-        q, k, v  = self.c_attn(x).split(self.n_head * self.dp, dim=2) 
-        q = q.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
-        k = k.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
-        v = v.view(B, T, self.n_head, self.dp).transpose(1, 2) # (B, nh, T, dp)
+        q, k, v  = self.c_attn(x).split(self.n_head * self.head_size, dim=2) 
+        q = q.view(B, T, self.n_head, self.head_size).transpose(1, 2) # (B, nh, T, hs)
+        k = k.view(B, T, self.n_head, self.head_size).transpose(1, 2) # (B, nh, T, hs)
+        v = v.view(B, T, self.n_head, self.head_size).transpose(1, 2) # (B, nh, T, hs)
 
-        # causal self-attention; Self-attend: (B, nh, T, dp) x (B, nh, dp, T) -> (B, nh, T, T)
+        # causal self-attention; Self-attend: (B, nh, T, head_size) x (B, nh, head_size, T) -> (B, nh, T, T)
         # manual implementation of attention
-        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(self.dp))
+        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(self.head_size))
         att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
         att = F.softmax(att, dim=-1) # This is stochastic matrix P in low-rank bottleneck paper
         att = self.attn_dropout(att)
-        y = att @ v # (B, nh, T, T) x (B, nh, T, dp) -> (B, nh, T, dp)
-        y = y.transpose(1, 2).contiguous().view(B, T, self.n_head * self.dp) # re-assemble all head outputs side by side
+        y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
+        y = y.transpose(1, 2).contiguous().view(B, T, self.n_head * self.head_size) # re-assemble all head outputs side by side
         
         # output projection
         y = self.resid_dropout(self.c_proj(y))
@@ -74,9 +73,9 @@ class MLP(nn.Module):
 
     def __init__(self, config):
         super().__init__()
-        self.c_fc    = nn.Linear(config.n_embd, 4 * config.n_embd, bias=config.bias)
+        self.c_fc    = nn.Linear(config.n_embd, config.mlp_width, bias=config.bias)
         self.gelu    = nn.GELU()
-        self.c_proj  = nn.Linear(4 * config.n_embd, config.n_embd, bias=config.bias)
+        self.c_proj  = nn.Linear(config.mlp_width, config.n_embd, bias=config.bias)
         self.dropout = nn.Dropout(config.dropout)
 
     def forward(self, x):
@@ -108,10 +107,10 @@ class GPTConfig:
     n_head: int = 8
     head_size: int = 96
     batch_size: int = 12    # for getting batches only
-    dp: int = 40
     n_embd: int = 768       # must have head_size * n_heads == n_embd
     dropout: float = 0.0
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
+    mlp_width: int = 4 * n_embd
 
 class GPT(nn.Module):
 
@@ -143,7 +142,7 @@ class GPT(nn.Module):
                 torch.nn.init.normal_(p, mean=0.0, std=0.02/math.sqrt(2 * config.n_layer))
 
         # report number of parameters
-        print("number of parameters: %.2fM" % (self.get_num_params()/1e6,))
+        #print(f"number of parameters: {self.get_num_params()}")
 
     def get_num_params(self, non_embedding=True):
         """
@@ -273,14 +272,14 @@ class GPT(nn.Module):
         ]
         num_decay_params = sum(p.numel() for p in decay_params)
         num_nodecay_params = sum(p.numel() for p in nodecay_params)
-        print(f"num decayed parameter tensors: {len(decay_params)}, with {num_decay_params:,} parameters")
-        print(f"num non-decayed parameter tensors: {len(nodecay_params)}, with {num_nodecay_params:,} parameters")
+        #print(f"num decayed parameter tensors: {len(decay_params)}, with {num_decay_params:,} parameters")
+        #print(f"num non-decayed parameter tensors: {len(nodecay_params)}, with {num_nodecay_params:,} parameters")
         # Create AdamW optimizer and use the fused version if it is available
         fused_available = 'fused' in inspect.signature(torch.optim.AdamW).parameters
         use_fused = fused_available and device_type == 'cuda'
         extra_args = dict(fused=True) if use_fused else dict()
         optimizer = torch.optim.AdamW(optim_groups, lr=learning_rate, betas=betas, **extra_args)
-        print(f"using fused AdamW: {use_fused}")
+        #print(f"using fused AdamW: {use_fused}")
 
         return optimizer
 
@@ -328,15 +327,33 @@ class GPT(nn.Module):
         return idx
 
     @torch.no_grad()
-    def get_weights(self, layer_idx):
-        layer_it = 0
-        for block in self.transformer.h:
-            if(layer_it == layer_idx):
-                attn = block.attn
-                d = attn.n_head * attn.dp
-                Wq = attn.c_attn.weight[0:d,:]
-                Wk = attn.c_attn.weight[d:2*d, :]
-                Wv = attn.c_attn.weight[2*d:3*d, :]
-                print(f"(layer {layer_it}) Wq: {Wq.shape}, Wk: {Wk.shape}")
-                return Wq, Wk
-            layer_it = layer_it + 1
+    def get_matricies(self, idx):
+        device = idx.device
+        B, n = idx.size() # batch size, sequence length 
+        assert n <= self.config.block_size, f"Cannot forward sequence of length {n}, block size is only {self.config.block_size}"
+        pos = torch.arange(0, n, dtype=torch.long, device=device) # shape (n)
+
+        tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, n, n_embd)
+        pos_emb = self.transformer.wpe(pos) # position embeddings of shape (n, n_embd)
+        x = self.transformer.drop(tok_emb + pos_emb)
+
+        block = self.transformer.h[0]
+        attn = block.attn
+
+        # calculate query, key, values for all heads in batch and move head forward to be the batch dim
+        q, k, v  = attn.c_attn(x).split(attn.n_head * attn.head_size, dim=2) 
+        q = q.view(B, n, attn.n_head, attn.head_size).transpose(1, 2) # (B, nh, n, hs)
+        k = k.view(B, n, attn.n_head, attn.head_size).transpose(1, 2) # (B, nh, n, hs)
+        v = v.view(B, n, attn.n_head, attn.head_size).transpose(1, 2) # (B, nh, n, hs)
+
+        # causal attn-attention; Self-attend: (B, nh, n, head_size) x (B, nh, head_size, n) -> (B, nh, n, n)
+        # manual implementation of attention
+        att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(attn.head_size))
+        att = att.masked_fill(attn.bias[:,:,:n,:n] == 0, float('-inf'))
+        att = F.softmax(att, dim=-1) # this is stochastic matrix in low-rank bottleneck paper
+        A = att # (B, nh, n, n)
+
+        # att = attn.attn_dropout(att) # TODO: not in identifiability paper
+        T = att @ v # (B, nh, n, n) x (B, nh, n, hs) -> (B, nh, n, hs)
+
+        return A[0,0], T[0,0]

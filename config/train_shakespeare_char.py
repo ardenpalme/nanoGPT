@@ -18,14 +18,14 @@ wandb_run_name = 'mini-gpt ' + datetime.datetime.now().strftime("%m/%d/%y %H:%M:
 dataset = 'shakespeare_char'
 gradient_accumulation_steps = 1
 batch_size = 16
-block_size = 16 # input sequence length
+block_size = 32 # input sequence length
 
 n_layer = 2
-n_head = 4
-head_size = 32
-n_embd = 128
+n_head = 3
+head_size = 40
+n_embd = 256
 dropout = 0.2
-dp = 50
+mlp_width = 4 * n_embd
 
 learning_rate = 1e-3 # with baby networks can afford to go a bit higher
 max_iters = 5000
@@ -36,5 +36,5 @@ beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
 warmup_iters = 100 # not super necessary potentially
 
 # on macbook also add
-device = 'cpu'  # run on cpu only
+device = 'xpu'  # run on cpu only
 compile = False # do not torch compile the model
