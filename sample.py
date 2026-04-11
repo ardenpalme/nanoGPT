@@ -43,13 +43,12 @@ model.load_state_dict(state_dict)
 model.eval()
 model.to(device)
 
-X, Y = get_batch('eval', os.path.join('data', dataset), device, device_type, model.config.block_size, model.config.batch_size) 
-print(model.config)
-with torch.no_grad():
-    A,T = model.get_matricies(X)
-    print(f"A: {A.shape}, T:{T.shape}")
-    a = A[:,0].reshape(model.config.block_size, 1)
-
-    output= a.T @ T
-    T_aug = np.hstack([output, np.ones((output.shape[0],1))])
-    basis_LN = sc.linalg.null_space(T_aug.T)
+X, Y = get_batch('eval', os.path.join('data', dataset), device, model.config.block_size, model.config.batch_size) 
+A,T,_ = model.get_matricies(X)
+T_aug = np.hstack([T, np.ones((T.shape[0],1))])
+print(f"T_aug:{T_aug.shape}")
+rank = np.linalg.matrix_rank(T_aug)
+U, S, Vh = np.linalg.svd(T)
+print(S[0], S[-1])
+entropy_A = -np.sum(A * np.log(A + 1e-9), axis=-1).mean()  # mean entropy of attention rows
+cond = S[0] / S[-1]

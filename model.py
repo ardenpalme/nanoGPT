@@ -112,6 +112,9 @@ class GPTConfig:
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
     mlp_width: int = 4 * n_embd
 
+    def print(self):
+        print(f"sequence length: {self.block_size}\nhead size: {self.head_size}\nembedding dimension: {self.n_embd}\nnumber of heads:{self.n_head}")
+
 class GPT(nn.Module):
 
     def __init__(self, config):
@@ -327,7 +330,12 @@ class GPT(nn.Module):
         return idx
 
     @torch.no_grad()
-    def get_matricies(self, idx):
+    def get_matricies(self, idx, head_idx=0):
+        '''
+        Model must be in eval mode to disable dropout otherwise A is not
+        row-stochastic (i.e. its rows dont sum to 1)
+        '''
+        assert(head_idx < self.config.n_head)
         device = idx.device
         B, n = idx.size() # batch size, sequence length 
         assert n <= self.config.block_size, f"Cannot forward sequence of length {n}, block size is only {self.config.block_size}"
@@ -351,9 +359,9 @@ class GPT(nn.Module):
         att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(attn.head_size))
         att = att.masked_fill(attn.bias[:,:,:n,:n] == 0, float('-inf'))
         att = F.softmax(att, dim=-1) # this is stochastic matrix in low-rank bottleneck paper
+        att = attn.attn_dropout(att) # note this is not in identifiability paper
         A = att # (B, nh, n, n)
 
-        # att = attn.attn_dropout(att) # TODO: not in identifiability paper
         T = att @ v # (B, nh, n, n) x (B, nh, n, hs) -> (B, nh, n, hs)
 
-        return A[0,0].to('cpu').numpy(), T[0,0].to('cpu').numpy()
+        return A[0,head_idx].to('cpu').numpy(), T[0,head_idx].to('cpu').numpy(), v[0,head_idx].to('cpu').numpy()

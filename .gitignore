@@ -5,7 +5,8 @@
 __pycache__/
 *.bin
 *.pkl
-*.pt
+out-shakespeare
+out-shakespeare-char
 *.pyc
 input.txt
 env/

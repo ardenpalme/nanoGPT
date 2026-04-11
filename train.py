@@ -47,7 +47,7 @@ wandb_project = 'owt'
 wandb_run_name = 'gpt'+ str(time.time())
 wandb_run = None
 # data
-dataset = 'shakespeare_char'
+dataset = 'shakespeare'
 gradient_accumulation_steps = 5 * 8 # used to simulate larger batch sizes
 batch_size = 12 # if gradient_accumulation_steps > 1, this is the micro-batch size
 block_size = 1024
@@ -131,7 +131,7 @@ if os.path.exists(meta_path):
     with open(meta_path, 'rb') as f:
         meta = pickle.load(f)
     meta_vocab_size = meta['vocab_size']
-    #print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
+    print(f"found vocab_size = {meta_vocab_size} (inside {meta_path})")
 
 # model init
 for k,v in config.items():
@@ -216,7 +216,7 @@ def estimate_loss():
     for split in ['train', 'val']:
         losses = torch.zeros(eval_iters)
         for k in range(eval_iters):
-            X, Y = get_batch(split, data_dir, device, device_type, block_size, batch_size)
+            X, Y = get_batch(split, data_dir, device, block_size, batch_size)
             with ctx:
                 logits, loss = model(X, Y)
             losses[k] = loss.item()
@@ -245,7 +245,8 @@ if wandb_log and master_process:
     wandb_run = wandb.init(project=wandb_project, name=wandb_run_name, config=config)
 
 # training loop
-X, Y = get_batch('train', data_dir, device, device_type, block_size, batch_size) # fetch the very first batch
+X, Y = get_batch('train', data_dir, device, block_size, batch_size) # fetch the very first batch
+
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
@@ -301,7 +302,7 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
                 logits, loss = model(X, Y)
                 loss = loss / gradient_accumulation_steps # scale the loss to account for gradient accumulation
             # immediately async prefetch next batch while model is doing the forward pass on the GPU
-            X, Y = get_batch('train', data_dir, device, device_type, block_size, batch_size) 
+            X, Y = get_batch('train', data_dir, device, block_size, batch_size) 
             # backward pass, with gradient scaling if training in fp16
             scaler.scale(loss).backward()
         # clip the gradient
