@@ -18,11 +18,11 @@ dataset = 'shakespeare'
 gradient_accumulation_steps = 1
 
 batch_size = 16
-block_size = 256 # input sequence length
+block_size = 64 # input sequence length
 n_layer = 4
 n_head = 4
 head_size = 64
-n_embd = 256   # embedding dimension
+n_embd = 32   # embedding dimension
 dropout = 0.2
 mlp_width = 4 * n_embd
 

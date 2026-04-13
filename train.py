@@ -28,7 +28,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
 
 from model import GPTConfig, GPT
-from lib.utils import calc_perplexity, get_batch
+from lib.utils import calc_optval, calc_perplexity, get_batch
 from tqdm import tqdm
 
 # -----------------------------------------------------------------------------
@@ -285,6 +285,8 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
                         'config': config,
                     }
                     #print(f"(iteration {iter_num}) saving checkpoint to {out_dir}")
+
+                    calc_optval(model)
                     torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
         if iter_num == 0 and eval_only:
             break
