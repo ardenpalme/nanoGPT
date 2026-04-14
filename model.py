@@ -67,7 +67,7 @@ class CausalSelfAttention(nn.Module):
         
         # output projection
         y = self.resid_dropout(self.c_proj(y))
-        return y
+        return y, att
 
 class MLP(nn.Module):
 
@@ -95,9 +95,16 @@ class Block(nn.Module):
         self.mlp = MLP(config)
 
     def forward(self, x):
-        x = x + self.attn(self.ln_1(x))
+        # Calculate once, catch both the result and the attention matrix
+        attn_output, att = self.attn(self.ln_1(x))
+        
+        # Use the result for the residual connection
+        x = x + attn_output 
+        
+        # Finish the MLP layer
         x = x + self.mlp(self.ln_2(x))
-        return x
+        
+        return x, att
 
 @dataclass
 class GPTConfig:
@@ -170,27 +177,33 @@ class GPT(nn.Module):
     def forward(self, idx, targets=None):
         device = idx.device
         b, t = idx.size()
-        assert t <= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
-        pos = torch.arange(0, t, dtype=torch.long, device=device) # shape (t)
+        assert t <= self.config.block_size, f"Cannot forward sequence..."
+        pos = torch.arange(0, t, dtype=torch.long, device=device)
 
         # forward the GPT model itself
-        tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
-        pos_emb = self.transformer.wpe(pos) # position embeddings of shape (t, n_embd)
+        tok_emb = self.transformer.wte(idx)
+        pos_emb = self.transformer.wpe(pos)
         x = self.transformer.drop(tok_emb + pos_emb)
+        
+        # --- MODIFICATION START ---
+        attentions = [] 
         for block in self.transformer.h:
-            x = block(x)
+            # Assumes each block returns (output, attention_weights)
+            x, attn = block(x) 
+            attentions.append(attn)
+        # --- MODIFICATION END ---
+            
         x = self.transformer.ln_f(x)
 
         if targets is not None:
-            # if we are given some desired targets also calculate the loss
             logits = self.lm_head(x)
             loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
         else:
-            # inference-time mini-optimization: only forward the lm_head on the very last position
-            logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim
+            logits = self.lm_head(x[:, [-1], :])
             loss = None
 
-        return logits, loss
+        # Return the 3 values your script expects
+        return logits, loss, attentions
 
     def crop_block_size(self, block_size):
         # model surgery to decrease the block size if necessary
@@ -330,12 +343,14 @@ class GPT(nn.Module):
         return idx
 
     @torch.no_grad()
-    def get_matricies(self, idx, head_idx=0):
+    def get_matricies(self, idx,layer_idx = 0,  head_idx=0):
         '''
         Model must be in eval mode to disable dropout otherwise A is not
         row-stochastic (i.e. its rows dont sum to 1)
         '''
         assert(head_idx < self.config.n_head)
+        assert(layer_idx < self.config.n_layer) # Added check for layer
+        
         device = idx.device
         B, n = idx.size() # batch size, sequence length 
         assert n <= self.config.block_size, f"Cannot forward sequence of length {n}, block size is only {self.config.block_size}"
@@ -344,8 +359,16 @@ class GPT(nn.Module):
         tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, n, n_embd)
         pos_emb = self.transformer.wpe(pos) # position embeddings of shape (n, n_embd)
         x = self.transformer.drop(tok_emb + pos_emb)
-
-        block = self.transformer.h[0]
+        for i in range(layer_idx):
+            # Extract only the tensor if the block returns a tuple
+            result = self.transformer.h[i](x)
+            if isinstance(result, tuple):
+                x = result[0]
+            else:
+                x = result
+        
+        # Now pick the specific block you want to analyze
+        block = self.transformer.h[layer_idx]
         attn = block.attn
 
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
