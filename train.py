@@ -34,6 +34,7 @@ from tqdm import tqdm
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
+out_fname = 'ckpt.pt'
 out_dir = 'out-shakespeare-char'
 eval_interval = 2000
 log_interval = 1
@@ -153,7 +154,7 @@ if init_from == 'scratch':
 elif init_from == 'resume':
     print(f"Resuming training from {out_dir}")
     # resume training from a checkpoint.
-    ckpt_path = os.path.join(out_dir, 'ckpt.pt')
+    ckpt_path = os.path.join(out_dir, out_fname)
     checkpoint = torch.load(ckpt_path, map_location=device)
     checkpoint_model_args = checkpoint['model_args']
     # force these config attributes to be equal otherwise we can't even resume training
@@ -284,10 +285,7 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
                         'best_val_loss': best_val_loss,
                         'config': config,
                     }
-                    #print(f"(iteration {iter_num}) saving checkpoint to {out_dir}")
-
-                    calc_optval(model)
-                    torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
+                    torch.save(checkpoint, os.path.join(out_dir, out_fname))
         if iter_num == 0 and eval_only:
             break
 
@@ -337,9 +335,6 @@ with tqdm(total=config['max_iters'], desc="Training") as pbar:
         # termination conditions
         if iter_num > max_iters:
             break
-
-#metrics_resp = calc_perplexity(model, device, filepath="val_batch.pkl", elapsed_time=(time.time() - start_time))
-#print(metrics_resp)
 
 if ddp:
     destroy_process_group()

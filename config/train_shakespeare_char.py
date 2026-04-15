@@ -3,6 +3,7 @@
 
 import datetime
 
+out_fname= 'ckpt.pt'
 out_dir = 'out-shakespeare-char'
 eval_interval = 250 # keep frequent because we'll overfit
 eval_iters = 100
@@ -20,10 +21,10 @@ gradient_accumulation_steps = 1
 
 batch_size = 16
 block_size = 32 # input sequence length
-n_layer = 2
+n_layer = 3
 n_head = 4
 head_size = 20
-n_embd = 64  # embedding dimension
+n_embd = 128  # embedding dimension
 dropout = 0.2
 mlp_width = 4 * n_embd
 

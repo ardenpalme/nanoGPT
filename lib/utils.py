@@ -68,15 +68,29 @@ def calc_perplexity(model, device, filepath="saved_batch.pkl", elapsed_time=0):
 
     return metrics
 
+def get_ckpt_model(ckpt_fname, device='cpu', ckpt_dir='out-shakespeare-char'):
+    torch.manual_seed(1337)
+    ckpt_path = os.path.join(ckpt_dir, ckpt_fname)
+    checkpoint = torch.load(ckpt_path, map_location=device)
+    gptconf = GPTConfig(**checkpoint['model_args'])
+    model = GPT(gptconf)
+    state_dict = checkpoint['model']
+    unwanted_prefix = '_orig_mod.'
+    for k,v in list(state_dict.items()):
+        if k.startswith(unwanted_prefix):
+            state_dict[k[len(unwanted_prefix):]] = state_dict.pop(k)
+    model.load_state_dict(state_dict)
+    model.eval() # disables dropout
+    model.to(device)
+    return model
 
-def calc_optval(model):
+def calc_optval(model, out_dir, out_fname):
     device='cpu'
     dataset='shakespeare_char'
-    checkpoint_dir='out-shakespeare-char'
     torch.manual_seed(1337)
 
     # load the checkpointed model state from last train save
-    ckpt_path = os.path.join(checkpoint_dir, 'ckpt.pt')
+    ckpt_path = os.path.join(out_dir, out_fname)
     checkpoint = torch.load(ckpt_path, map_location=device)
     gptconf = GPTConfig(**checkpoint['model_args'])
     model = GPT(gptconf)
@@ -95,60 +109,66 @@ def calc_optval(model):
     hs = model.config.head_size
     X, Y = get_batch('eval', os.path.join('data', dataset), device, n, model.config.batch_size)
     A,T,v = model.get_matricies(X,0)
+    res = two_phase_opt(n,A,T,X.numpy())
+    if(res != None):
+        print(f"Optimal objective: {res[0]}")
+
+def two_phase_opt(n,A,T,X,col_idx=0):
     T_aug = np.concatenate([T, np.ones((n, 1))], axis=1)
-    basis_LN_base = sc.linalg.null_space(T.T)
+    basis_LN_base = sc.linalg.null_space(X)
     basis_LN = sc.linalg.null_space(T_aug.T)
 
-    a_orig = A[:, 1].copy()
+    a = A[:, col_idx].copy()
     B = basis_LN
     E = basis_LN_base
 
     k = B.shape[1]
-    n = len(a_orig)
-    e_dot_1 = E.T @ np.ones(n)
     eps = 1e-8
 
     def get_x(lam):
-        return a_orig + B @ lam
+        return a + B @ lam
 
     def objective(lam):
         x = get_x(lam)
         if np.any(x <= 0):
             return 1e12
-        vals = (E.T @ np.log(x)) / e_dot_1
+        vals = (E.T @ np.log(x)) / (E.T @ np.ones(n))
         return float(np.max(np.abs(vals - vals[0])))
 
-    # Step 1: LP warm start — find interior feasible point
-    # maximize s s.t. a + B @ lam >= s, i.e. -B @ lam + s <= a
-    c_feas  = np.zeros(k + 1); c_feas[-1] = -1.0
-    A_feas  = np.hstack([-B, np.ones((n, 1))])
-    lp      = opt.linprog(c_feas, A_ub=A_feas, b_ub=a_orig,
-                      bounds=[(None,None)]*k + [(None,None)],
-                      method='highs')
-    lam0    = lp.x[:k]
-    print(f"LP slack:       {-lp.fun:.6f}")
-    print(f"Objective(lam0): {objective(lam0):.6f}")
+    c_feas  = np.zeros(k + 1); 
+    c_feas[-1] = -1.0  # minimizing -s
+    A_ub = np.hstack([-B, np.ones((n, 1))]) # -B @ lam + s <= a
+    lp = opt.linprog(c_feas, A_ub=A_ub, b_ub=a, bounds=[(None,None)]*k + [(None,None)])
+    lam0 = lp.x[:k]
 
-    # Step 2: SLSQP with multiple restarts
     results = []
     for trial in range(50):
-        lam_init = lam0 + np.random.randn(k) * (0 if trial == 0 else 0.01)
+        if trial == 0:
+            lam_init = lam0
+        else:
+            lam_init = lam0 + np.random.randn(k) * 0.01
+
+        # discard any initial lambdas with subcomponents < tolerance
         if np.any(get_x(lam_init) <= eps):
             continue
+
         res = opt.minimize(
             objective,
             lam_init,
             method='SLSQP',
             constraints={'type': 'ineq', 'fun': lambda l: get_x(l) - eps},
-            options={'ftol': 1e-12, 'maxiter': 5000, 'disp': False}
+            options={'ftol': 1e-8, 'maxiter': 2500, 'disp': False}
         )
         if res.fun < 1e11:  # filter out infeasible
             results.append(res)
 
+    if(len(results) == 0):
+        return None
+
     best = min(results, key=lambda r: r.fun)
     a_opt = get_x(best.x)
 
-    print(f"\nOptimal objective: {best.fun:.6f}")
-    print(f"Min component:     {np.min(a_opt):.8f}")
-    print(f"Solver success:    {best.success}")
-    print(f"Solver message:    {best.message}")
+    if(best.success): 
+        return best.fun, a_opt
+    else:
+        return None

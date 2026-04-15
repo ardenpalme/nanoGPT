@@ -43,4 +43,3 @@ model.load_state_dict(state_dict)
 model.eval()
 model.to(device)
 
-print(model.config)
